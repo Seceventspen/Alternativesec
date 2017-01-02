@@ -1,10 +1,18 @@
 [
   
   {
+    "title"    : "What to expect from AlternativeSec!",
+    "category" : "",
+    "tags"     : "2017, Happy New Year, Alternativesec, expect",
+    "url"      : "/alternativesec/2017/01/02/HNY-What-to-expect/",
+    "date"     : "2017-01-02 00:00:00 +0000"
+    } ,
+    
+  {
     "title"    : "Coming Soon!",
     "category" : "",
     "tags"     : "content, expect, Cyber, Info, Security",
-    "url"      : "/jekyll/2016/12/28/More-about-the-blog/",
+    "url"      : "/alternativesec/2016/12/28/More-about-the-blog/",
     "date"     : "2016-12-28 00:00:00 +0000"
     } ,
     
@@ -12,7 +20,7 @@
     "title"    : "Hello World!",
     "category" : "",
     "tags"     : "welcome",
-    "url"      : "/jekyll/2016/12/28/Hello-World/",
+    "url"      : "/alternativesec/2016/12/28/Hello-World/",
     "date"     : "2016-12-28 00:00:00 +0000"
     } 
     

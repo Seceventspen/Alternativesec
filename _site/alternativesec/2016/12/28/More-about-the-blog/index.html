@@ -4,7 +4,7 @@
     <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AlternativeSec</title>
+<title>Coming Soon!</title>
 <meta name="description" content="A small website blog for cyber sec and pentesting adventures. ">
 
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -76,81 +76,88 @@
 
     <div class="page-content">
       <div class="wrap">
-      <div class="container-fluid index">
-  <div class="row index all-posts">
+      
 
-    <h1 class="header author-header"></h1>
-    <h2 class="header" itemprop="headline">All posts</h2>
-    <h2 class="header categories" itemprop="headline"><small>grouped by
+<div class="container-fluid single">
+  <div class="row">
 
-      <div class="dropdown btn-group">
-        <button class="btn btn-categories dropdown-toggle btn-xs" type="button" data-toggle="dropdown">Years
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li><a href="/posts-by-categories/">Categories</a></li>
-        </ul>
+    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
+      
+      <div class="thumb">
+        <i class="fa fa-cogs fa-4x"></i>
+      </div>
+      
+
+      <h1 class="header" itemprop="name">Coming Soon!</h1>
+
+      <div class="author">
+        <small><i>
+          
+          by
+          <span itemprop="author">
+            
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="name">SecEventsPen</span>
+            </span>
+            
+          </span>
+          
+          on <span itemprop="datePublished" content="2014-08-28">December 28, 2016</span>
+           under AlternativeSec
+        </i></small>
       </div>
 
-    </small></h2>
+      <div class="read-time">
+        <small>
+          1 minute read
+        </small>
+      </div>
 
-      
-      
-      
+      <div class="content-panel content">
 
-      
-      <div class="col-md-12 content-panel articles">
-        <h2 id="2017-ref">2017</h2>
-        <ul>
-      
-
-          <li>
-            <a href="/alternativesec/2017/01/02/HNY-What-to-expect/">What to expect from AlternativeSec!</a>
-            <small class="hidden-xs">January 2, 2017</small>
-          </li>
-      
         
-          </ul>
+
+        <span itemprop="articleBody"><p>More about the Alternativesec blog and what to expect coming soon!!!</p>
+</span>
+
+        
+
+        
+        <div class="share">
+          <!-- Go to www.addthis.com/dashboard to customize your tools -->
+          <div class="addthis_sharing_toolbox"></div>
         </div>
-        <div class="col-md-12 content-panel articles">
-          <h2 id="2016-ref">2016</h2>
-          <ul>
         
-    
 
-    
-      
-      
-
-      
-
-          <li>
-            <a href="/alternativesec/2016/12/28/More-about-the-blog/">Coming Soon!</a>
-            <small class="hidden-xs">December 28, 2016</small>
-          </li>
-      
         
-    
+        <div class="tags">
+          <small>
+          <i class="fa fa-tags"></i>
+            content, expect, Cyber, Info, Security
+          </small>
+        </div>
+        
 
-    
-      
-      
+      </div>
 
       
-
-          <li>
-            <a href="/alternativesec/2016/12/28/Hello-World/">Hello World!</a>
-            <small class="hidden-xs">December 28, 2016</small>
-          </li>
-      
-        </ul>
+      <div class="content-panel feedback">
+        I <i class="fa fa-heart"></i> feedback.<br />
+        Let me know what you think of this article on twitter <a href="http://www.twitter.com/SecEventsPen">@SecEventsPen</a>!
       </div>
       
 
-    
+      
+
+      
+
     </div>
 
   </div>
+
+</div>
+
+
 
       </div>
     </div>
@@ -181,48 +188,6 @@
    });
 </script>
 
-
-<script type="text/javascript">
-
-  function setFontSize() {
-
-    var title, dateOfTitle, fontSizeOfTitle, listOfA, listOfSmall, listOfArticlesDiv, divWidth;
-
-    listOfArticlesDiv = document.getElementsByClassName("articles");
-
-    for (i = 0; i < listOfArticlesDiv.length; i++) {
-
-      listOfA = document.getElementsByClassName("articles")[i].getElementsByTagName("a");
-      listOfSmall = document.getElementsByClassName("articles")[i].getElementsByTagName("small");
-
-      divWidth = document.getElementsByClassName("articles")[i].offsetWidth;
-
-      for (k = 0; k < listOfSmall.length; k++) {
-
-        title = $(listOfA[k]);
-        dateOfTitle = $(listOfSmall[k]);
-
-        fontSizeOfTitle = startingFontSize;
-        title.css("font-size", fontSizeOfTitle);
-
-        while (title.width() + dateOfTitle.width() >= divWidth)
-          title.css("font-size", fontSizeOfTitle -= 0.5);
-
-      }
-    }
-  }
-
-  function getStartFontSize() {
-    try {
-      startingFontSize = parseInt($(document.getElementsByClassName("articles")[0].getElementsByTagName("a")[0]).css("font-size"));
-      setFontSize();
-      window.addEventListener('resize', setFontSize, true);
-    } catch (e) {}
-  }
-
-  $(document).ready(getStartFontSize);
-
-</script>
 
 
 

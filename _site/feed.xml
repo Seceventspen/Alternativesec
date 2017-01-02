@@ -1,21 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Alternativesec</title>
+    <title>AlternativeSec</title>
     <description>A small website blog for cyber sec and pentesting adventures. </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 29 Dec 2016 10:25:10 +0000</pubDate>
-    <lastBuildDate>Thu, 29 Dec 2016 10:25:10 +0000</lastBuildDate>
+    <pubDate>Mon, 02 Jan 2017 14:14:02 +0000</pubDate>
+    <lastBuildDate>Mon, 02 Jan 2017 14:14:02 +0000</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>What to expect from AlternativeSec!</title>
+        <description>&lt;p&gt;Well first things first, Happy New  Year!! Hopefully everyone’s head is a little clearly after all the festivities!&lt;/p&gt;
+
+&lt;p&gt;Ok, so now thats out of the way, more about AlternativeSec and what to expect from the blog!&lt;/p&gt;
+
+&lt;p&gt;Quite simply, you can expect to see some of my adventures from pentest land featured here (OpSec permitting), walkthroughs of vulnerable virtual machines from &lt;a href=&quot;https://www.vulnhub.com&quot;&gt;Vulnhub&lt;/a&gt;, as well as other relevant topics and issues. There will also be blog posts about new things I encounter, testing tools, scripting, security cons and anything else that I am trying to learn for my own personal development and that ever eternal quest for knowledge!&lt;/p&gt;
+
+&lt;p&gt;I’ll be aiming to keep the blog posts themselves pretty straight forward without being to long winded (where possible!) with links to accompanying research and third party sites where appropriate or that have personally helped me out.&lt;/p&gt;
+
+&lt;p&gt;Well I guess thats all for the first post from 2017 and be on the look out for future AlternativeSec blog posts.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/alternativesec/2017/01/02/HNY-What-to-expect/</link>
+        <guid isPermaLink="true">http://localhost:4000/alternativesec/2017/01/02/HNY-What-to-expect/</guid>
+        
+        <category>2017</category>
+        
+        <category>Happy New Year</category>
+        
+        <category>Alternativesec</category>
+        
+        <category>expect</category>
+        
+        
+        <category>AlternativeSec</category>
+        
+      </item>
     
       <item>
         <title>Coming Soon!</title>
         <description>&lt;p&gt;More about the Alternativesec blog and what to expect coming soon!!!&lt;/p&gt;
 </description>
         <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000/jekyll/2016/12/28/More-about-the-blog/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll/2016/12/28/More-about-the-blog/</guid>
+        <link>http://localhost:4000/alternativesec/2016/12/28/More-about-the-blog/</link>
+        <guid isPermaLink="true">http://localhost:4000/alternativesec/2016/12/28/More-about-the-blog/</guid>
         
         <category>content</category>
         
@@ -28,7 +57,7 @@
         <category>Security</category>
         
         
-        <category>jekyll</category>
+        <category>AlternativeSec</category>
         
       </item>
     
@@ -38,16 +67,16 @@
 
 &lt;p&gt;As a result of their continued encouragement and the following phrase “if you only do what you can do, you will never be more than you are now!” … from this the Alternativesec blog came to life!&lt;/p&gt;
 
-&lt;p&gt;So without further a-do they get prize of place in Alternativesec’s first blog post, take a bow gentlemen, @digininja, @tamonten and @zyx2k without your little nudges along the way this would have always been an idea!&lt;/p&gt;
+&lt;p&gt;So without further a-do they get prize of place in Alternativesec’s first blog post, take a bow gentlemen, &lt;a href=&quot;https://twitter.com/digininja&quot;&gt;digininja&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/tamonten&quot;&gt;tamonten&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/zyx2k&quot;&gt;zyx2k&lt;/a&gt; without your little nudges along the way this would have always been an idea!&lt;/p&gt;
 </description>
         <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
-        <link>http://localhost:4000/jekyll/2016/12/28/Hello-World/</link>
-        <guid isPermaLink="true">http://localhost:4000/jekyll/2016/12/28/Hello-World/</guid>
+        <link>http://localhost:4000/alternativesec/2016/12/28/Hello-World/</link>
+        <guid isPermaLink="true">http://localhost:4000/alternativesec/2016/12/28/Hello-World/</guid>
         
         <category>welcome</category>
         
         
-        <category>jekyll</category>
+        <category>AlternativeSec</category>
         
       </item>
     

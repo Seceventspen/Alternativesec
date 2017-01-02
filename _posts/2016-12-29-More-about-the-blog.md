@@ -4,7 +4,7 @@ title:      Coming Soon!
 date:       2016-12-28
 author:     SecEventsPen
 summary:    Next blog post.
-categories: jekyll
+categories: AlternativeSec
 thumbnail:  cogs
 tags:
  - content
