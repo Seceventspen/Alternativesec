@@ -5,8 +5,8 @@
     <description>A small website blog for cyber sec and pentesting adventures. </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 02 Jan 2017 14:51:44 +0000</pubDate>
-    <lastBuildDate>Mon, 02 Jan 2017 14:51:44 +0000</lastBuildDate>
+    <pubDate>Mon, 02 Jan 2017 14:57:18 +0000</pubDate>
+    <lastBuildDate>Mon, 02 Jan 2017 14:57:18 +0000</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
