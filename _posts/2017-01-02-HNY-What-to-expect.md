@@ -5,7 +5,7 @@ date:       2017-01-02
 author:     SecEventsPen
 summary:    Blog update post.
 categories: AlternativeSec
-thumbnail:  question mark
+thumbnail:  question-circle-o
 tags:
  - 2017
  - Happy New Year

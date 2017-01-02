@@ -5,17 +5,17 @@
     <description>A small website blog for cyber sec and pentesting adventures. </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 02 Jan 2017 14:14:02 +0000</pubDate>
-    <lastBuildDate>Mon, 02 Jan 2017 14:14:02 +0000</lastBuildDate>
+    <pubDate>Mon, 02 Jan 2017 14:51:44 +0000</pubDate>
+    <lastBuildDate>Mon, 02 Jan 2017 14:51:44 +0000</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
         <title>What to expect from AlternativeSec!</title>
-        <description>&lt;p&gt;Well first things first, Happy New  Year!! Hopefully everyone’s head is a little clearly after all the festivities!&lt;/p&gt;
+        <description>&lt;p&gt;Well first things first, Happy New  Year!! Hopefully everyone’s head is a little clearer after all the festivities!&lt;/p&gt;
 
-&lt;p&gt;Ok, so now thats out of the way, more about AlternativeSec and what to expect from the blog!&lt;/p&gt;
+&lt;p&gt;Ok, so now that’s out of the way, more about what to expect from the AlternativeSec blog!&lt;/p&gt;
 
-&lt;p&gt;Quite simply, you can expect to see some of my adventures from pentest land featured here (OpSec permitting), walkthroughs of vulnerable virtual machines from &lt;a href=&quot;https://www.vulnhub.com&quot;&gt;Vulnhub&lt;/a&gt;, as well as other relevant topics and issues. There will also be blog posts about new things I encounter, testing tools, scripting, security cons and anything else that I am trying to learn for my own personal development and that ever eternal quest for knowledge!&lt;/p&gt;
+&lt;p&gt;Quite simply, you can expect to see some of my adventures from pentest land featured here (OpSec permitting), walkthroughs of vulnerable virtual machines from &lt;a href=&quot;https://www.vulnhub.com&quot;&gt;Vulnhub&lt;/a&gt;, as well as other relevant topics and issues. There will also be blog posts about new things I encounter, testing tools, scripting, security cons and anything else that I am trying to learn for my own personal development and that never ending quest for knowledge!&lt;/p&gt;
 
 &lt;p&gt;I’ll be aiming to keep the blog posts themselves pretty straight forward without being to long winded (where possible!) with links to accompanying research and third party sites where appropriate or that have personally helped me out.&lt;/p&gt;
 
@@ -31,7 +31,7 @@
         
         <category>Alternativesec</category>
         
-        <category>expect</category>
+        <category>Expect</category>
         
         
         <category>AlternativeSec</category>
