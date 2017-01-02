@@ -13,7 +13,7 @@ tags:
  - Expect
 ---
 
-Well first things first, Happy New  Year!! Hopefully everyone's head is a little clearly after all the festivities!
+Well first things first, Happy New  Year!! Hopefully everyone's head is a little clearer after all the festivities!
 
 Ok, so now thats out of the way, more about AlternativeSec and what to expect from the blog!
 
