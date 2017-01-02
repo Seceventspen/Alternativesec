@@ -5,9 +5,146 @@
     <description>A small website blog for cyber sec and pentesting adventures. </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 02 Jan 2017 14:57:18 +0000</pubDate>
-    <lastBuildDate>Mon, 02 Jan 2017 14:57:18 +0000</lastBuildDate>
+    <pubDate>Mon, 02 Jan 2017 18:07:34 +0000</pubDate>
+    <lastBuildDate>Mon, 02 Jan 2017 18:07:34 +0000</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>How to detect Network Level Authentication (NLA)</title>
+        <description>&lt;p&gt;while on a test recently, I noted that several hosts had TCP port 3389 (RDP) open. I had a little extra time to play with and after reading Robin Woods &lt;a href=&quot;https://twitter.com/digininja&quot;&gt;@diginija&lt;/a&gt; recent blog post &lt;a href=&quot;https://digi.ninja/blog/rdp_show_login_page.php&quot;&gt;Show RDP login page&lt;/a&gt;. Great I thought, time to put this to practice! Maybe I could snag some low hanging fruit such as what @diginija got a glimpse of i.e. logged in user accounts/usernames. Now the difference in my scenario being, I was using a Linux host for testing and @digininja used a Windows host. This meant I’d be using the linux ‘rdesktop’ protocol or the linux tool ‘Remmina/FreeRDP’. So a few questions arose from this, Would I be able to replicate what @diginija achieved and would there be any issues in trying to achieve the same objective, though using a different host?? Only one way to find out!&lt;/p&gt;
+
+&lt;p&gt;First though, here’s a short round up/background info on both the RDP protocol and NLA service.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RDP&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The Remote Desktop protocol or RDP as its commonly known is a proprietary service developed by Microsoft which provides a user with a GUI (graphical user interface) while connecting to another computer over a network connection. This requires a user to employ RDP client software, while the remote host must have an RDP server enabled. Quite simply put, the RDP services allows a user to initiate a remote session on the standard TCP port 3389 should a remote host have the service enabled (a switched on sys/network admin may change the standard port to hide of obfuscate the service from users in attempt to hide the service).&lt;/p&gt;
+
+&lt;p&gt;More in-depth info on the service and its history can be found here via these external links:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Remote_Desktop_Protocol&quot;&gt;RDP Wikipedia&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://msdn.microsoft.com/en-us/library/aa383015(v=vs.85).aspx&quot;&gt;RDP Microsoft Library&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://support.microsoft.com/en-us/kb/186607&quot;&gt;RDP Microsoft Support&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NLA&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Network Level Authentication or NLA as its commonly known is a service/technology that is used in conjunction with Remote Desktop services (RDP in this instance) and was rolled out with version 6.0 of RDP with initial support in MS Windows Vista. When RDP connections were/are made where NLA is not enabled or supported the user/attacker will automatically be connected to the remote host should the RDP server be enabled. When NLA is enabled with RDP, prior to establishing a RDP session a user will be prompted to enter valid network connection/login credentials, which will be authenticated prior to any RDP graphical session being established. Simply put, if the user trying to connect doesn’t valid login creds, then even though the RDP service is running, no RDP session will be created. This has the added advantage of preventing an unintended user/attacker from enumerating low hanging fruit such as user names, Domain names and potentially logged in users.&lt;/p&gt;
+
+&lt;p&gt;More in-depth info on the Service and its history can be found here via these external links:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Network_Level_Authentication&quot;&gt;NLA Wikipedia&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://technet.microsoft.com/en-us/library/cc732713(v=ws.11).aspx&quot;&gt;NLA Microsoft Library&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, so now we have a nice overview/understanding of RDP and NLA it’s time to get to work on the issues at hand - How to detect NLA and what if its enabled?&lt;/p&gt;
+
+&lt;p&gt;While on a recent engagement the network enumeration I had carried out the standard ports and services enumeration highlighted the RDP service was running on several hosts. This is always a personal favourite of mine to see if I can leverage this service for some ‘low hanging fruit’ or better still exploit a weak or misconfigured service. I had a bit more time on this enagagment to explore different avenue and set about testing out a PoC I read about over on &lt;strong&gt;&lt;a href=&quot;https://digi.ninja/blog/rdp_show_login_page.php&quot;&gt;digi.ninja&lt;/a&gt;&lt;/strong&gt;. Though I was going to attempt to do a PoC using a linux host/tools.&lt;/p&gt;
+
+&lt;p&gt;Using everyones favourite port scanning/enumertaion tool, NMAP, my scans against the target hosts identified that TCP port 3389 (standard RDP port) was open (see below):&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---[SNIP-Nmap-Scan]---
+3389/tcp  open     ssl/ms-wbt-server? syn-ack ttl 121
+| ssl-cert: Subject: commonName=****-****-****.****.net
+| Not valid before: 2016-09-22T09:47:25
+|_Not valid after:  2017-03-24T09:47:25
+|_ssl-date: 2016-12-05T11:42:47+00:00; 0s from scanner time.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Using the Nmap NSE script ‘nmap -p 3389 –script rdp-enum-encryption’ I was able to confirm some further info (see below):&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---[SNIP-Nmap-RDP-NSE-Script]---
+ Nmap scan report for ****-****-****.****.net (10.xx.xx.xx)
+Host is up (0.0013s latency).
+PORT     STATE SERVICE
+3389/tcp open  ms-wbt-server
+| rdp-enum-encryption:
+|   Security layer
+|_    CredSSP: SUCCESS
+
+Nmap scan report for ****-****-****.****.net (10.xx.xx.xx)
+Host is up (0.0014s latency).
+PORT     STATE SERVICE
+3389/tcp open  ms-wbt-server
+| rdp-enum-encryption:
+|   Security layer
+|_    CredSSP: SUCCESS
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;NB: as seen above no encryption ciphers were displayed and CredSSP has been noted aswell. The NSE script output normally returns the following:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---[SNIP-from-NSE-file-showing-example-output]
+-- nmap -p 3389 --script rdp-enum-encryption &amp;lt;ip&amp;gt;
+--
+-- @output
+-- PORT     STATE SERVICE
+-- 3389/tcp open  ms-wbt-server
+-- | rdp-enum-encryption:
+-- |   Security layer
+-- |     CredSSP: SUCCESS
+-- |     Native RDP: SUCCESS
+-- |     SSL: SUCCESS
+-- |   RDP Encryption level: High
+-- |     128-bit RC4: SUCCESS
+-- |_    FIPS 140-1: SUCCESS
+--
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This may indicate that we have encountered out first hurdle to overcome in achieving our goal of replicating @digininja’s work while using a linux client!?&lt;/p&gt;
+
+&lt;p&gt;Ok, time to attempt an RDP connection to see what we can view:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---[SNIP]---
+******@*********:~# rdesktop 10.xx.xx.xx
+Autoselected keyboard map en-gb
+ERROR: CredSSP: Initialize failed, do you have correct kerberos tgt initialized ?
+Failed to connect, CredSSP required by server.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Ok, so that attempt failed as CREDSSP is required by the target server. From carrying out some research into this, it seems rdesktop does support CREDSSP + Kerbros which is a subset of NLA support. If a Kerbros ticket has not been initialised then rdesktop will not make the handshake to use SSL for transport with the server. It seems that if the remote server is forcing the use of NLA the fail back path will fail and rdesktop will report this to the console in the form of the error message:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Error messaged displayed:
+
+CredSSP: Initialize failed, do you have correct kerberos tgt initialized ?
+Failed to connect, CredSSP required by server.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;For continuity I next tried the linux tool Remmina (a linux eqivilent of of the windows RDP tool) with a view to following the steps outlined in digininja’s blog, through setting up and then tweaking the Remmina config to suit or circumstances.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/NLA/Remmina_setup.png&quot; alt=&quot;Remmina Setup&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/NLA/Remmina_config.png&quot; alt=&quot;Remmina Config&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Taking a shot in the dark and not being able to find any reference to amending the config file of a Remmina connection, I took a stab in the dark and entered the same string in to the Remmina config file that digininja used in the windows config change:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;enablecredsspsupport:i:0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Now I’m almost 100% certain that this isn’t the correct format for the Remmina configs but again, I couldn’t find any other info to guide me on this!! If anyone knows the correct string/format to enter into a Remmina config file drop me a &lt;em&gt;&lt;a href=&quot;mailto:seceventspen@alternativesec.xzy&quot;&gt;mail&lt;/a&gt;&lt;/em&gt; via the blog.&lt;/p&gt;
+
+&lt;p&gt;As I suspected, the connection didn’t work via this particular method! Its looking more and more likely that NLA is enabled on the target hosts. I tried one last thing and replicated exactly what digininja did and set up a connection using a windows host, altered the config and then initiated the RDP session …. as you’ve all probably guessed by now, the connection failed!
+Any further attempts at this stage of the engagement against the RDP service/server would prove useless!&lt;/p&gt;
+
+&lt;p&gt;Whilst my attempts in proving a PoC using a linux host/tools in this instance was unsuccessful it was good to have time to go over some basics in identifying services and validating additional services in play which prevent an unintentional user from doing things and making connections to services they shouldn’t be!!&lt;/p&gt;
+
+&lt;p&gt;In summary, my target hosts did employ NLA, as each time I attempted to initiate any type of remote connection protocol/service I would receive the following pop-up:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/NLA/NLAPopUp.png&quot; alt=&quot;NLA verification pop-up&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This, combined with the other information and output we have recovered all point to the fact that NLA is in use on this occassion and will stop any type of connection and enummertaion of the service without valid user credentials. This ultimately places another security barrier which has to be overcome in the way of any would be snooper!&lt;/p&gt;
+
+&lt;p&gt;Should you ever come across a host with RDP server enabled and Tcp port 3389 open, don’t pay it lip service and assume it will be locked down! Always investigate and attempt a connection, you don’t need to go to the extent that I have, but by checking it out, you never know how lucky you may get! If the host isn’t employing NLA you may well be able to enumerate information which could prove useful in gaining a foothold on a network at a later stage!&lt;/p&gt;
+
+&lt;p&gt;I’d like to say thanks to a few folks who gave me some nudging long the way to write this up &lt;em&gt;tamonten&lt;/em&gt;, &lt;em&gt;digininja&lt;/em&gt; &amp;amp; &lt;em&gt;zyx2k&lt;/em&gt;. All very knowledgable peers and someday I might get to their levels!&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading!&lt;/p&gt;
+</description>
+        <pubDate>Mon, 02 Jan 2017 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/pentesting/2017/01/02/NLA-How-to/</link>
+        <guid isPermaLink="true">http://localhost:4000/pentesting/2017/01/02/NLA-How-to/</guid>
+        
+        <category>How to - NLA - RDP - 2017</category>
+        
+        
+        <category>Pentesting</category>
+        
+      </item>
     
       <item>
         <title>What to expect from AlternativeSec!</title>
@@ -17,7 +154,7 @@
 
 &lt;p&gt;Quite simply, you can expect to see some of my adventures from pentest land featured here (OpSec permitting), walkthroughs of vulnerable virtual machines from &lt;a href=&quot;https://www.vulnhub.com&quot;&gt;Vulnhub&lt;/a&gt;, as well as other relevant topics and issues. There will also be blog posts about new things I encounter, testing tools, scripting, security cons and anything else that I am trying to learn for my own personal development and that never ending quest for knowledge!&lt;/p&gt;
 
-&lt;p&gt;I’ll be aiming to keep the blog posts themselves pretty straight forward without being to long winded (where possible!) with links to accompanying research and third party sites where appropriate or that have personally helped me out.&lt;/p&gt;
+&lt;p&gt;I’ll be aiming to keep the blog posts themselves pretty straight forward without being to long winded (where possible!). I’ll include links to accompanying research and/or third party sites where appropriate or any useful bits and pieces that have personally helped me out.&lt;/p&gt;
 
 &lt;p&gt;Well I guess thats all for the first post from 2017 and be on the look out for future AlternativeSec blog posts.&lt;/p&gt;
 </description>
@@ -63,11 +200,11 @@
     
       <item>
         <title>Hello World!</title>
-        <description>&lt;p&gt;Hello World and welcome everyone to the very first blog post from Alternativesec! This little venture is the result of some positive encouragement from several friends and peers, who’s technical level and expertise, is what I aspire to attain during my career.&lt;/p&gt;
+        <description>&lt;p&gt;Hello World and welcome everyone to the very first blog post from AlternativeSec! This little venture is the result of some positive encouragement from several friends and peers, who’s technical level and expertise, is what I aspire to attain during my career.&lt;/p&gt;
 
-&lt;p&gt;As a result of their continued encouragement and the following phrase “if you only do what you can do, you will never be more than you are now!” … from this the Alternativesec blog came to life!&lt;/p&gt;
+&lt;p&gt;As a result of their continued encouragement and the following phrase “if you only do what you can do, you will never be more than you are now!” … from this the AlternativeSec blog came to life!&lt;/p&gt;
 
-&lt;p&gt;So without further a-do they get prize of place in Alternativesec’s first blog post, take a bow gentlemen, &lt;a href=&quot;https://twitter.com/digininja&quot;&gt;digininja&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/tamonten&quot;&gt;tamonten&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/zyx2k&quot;&gt;zyx2k&lt;/a&gt; without your little nudges along the way this would have always been an idea!&lt;/p&gt;
+&lt;p&gt;So without further a-do they get prize of place in AlternativeSec’s first blog post, take a bow gentlemen, &lt;a href=&quot;https://digi.ninja&quot;&gt;digininja&lt;/a&gt;, &lt;a href=&quot;http://www.tamonten.com&quot;&gt;tamonten&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/zyx2k&quot;&gt;zyx2k&lt;/a&gt; without your little nudges along the way this would have always been an idea!&lt;/p&gt;
 </description>
         <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
         <link>http://localhost:4000/alternativesec/2016/12/28/Hello-World/</link>
