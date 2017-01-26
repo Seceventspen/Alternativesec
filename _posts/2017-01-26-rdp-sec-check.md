@@ -14,7 +14,7 @@ tags:
 - 2017
 ---
 
-Following on from my previous blog post on **[NLA](https://www.alternativesec.xyz/pentesting/2017/01/02/NLA-How-to/)**, a tool to help with RDP enumeration has been suggested to me to explore. The tool's name is ‘rdp-sec-check’ by Portcullis Labs.
+Following on from my previous blog post on **[NLA](https://www.alternativesec.xyz/pentesting/2017/01/02/NLA-How-to/)**, a tool to help with RDP enumeration has been suggested to me to explore. The tools name is ‘rdp-sec-check’ by Portcullis Labs.
 
 Having surfed over to the Protcullis website to check out this tool I found a handy introduction to it. As expected it covers basically what the tool is and how it goes about its business. Obviously the name gives it away, ‘rdp-sec-check’, it's another tool for checking the RDP security configuration of a target host.
 Some folks might already be saying, big deal, tools such as Nmap and its NSE script for checking RDP:
