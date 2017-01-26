@@ -22,6 +22,7 @@ Some folks might already be saying, big deal, tools such as Nmap and its NSE scr
 ```nohighlight
 nmap -p 3389 --script rdp-enum-encryption <Target-host>
 ```
+
 and the likes of [XRDP](http://www.xrdp.org) etc can do this already and your initial thoughts you would be right; however, the Portcullis rdp-sec-check tool is not intended to replace the likes of this Nmap script or any type of manual verification, on the contrary, it is there to augment the testing of this service by providing additional context and continuity of any testing that is already underway or that has taken place.
 
 Ok so here’s what Portcullis have to say about ‘rdp-sec-check’:
@@ -115,7 +116,7 @@ Lockfile removed.
 Now thats the CPAN dependency is taken care of, we can now move on to getting the rdp-sec-check tool. At the time of writing this blog post 26th January 2017, the most recent version of the tool is:
 
 ```nohighlight
- rdp-sec-check-0.9.tgz
+rdp-sec-check-0.9.tgz
 ```
 
 After searching Github and the Portcullis website, this is the most recent version available that I could find. The tool itself can be obtained in a few methods:
@@ -172,7 +173,7 @@ COPYING.GPL  COPYING.RDP-SEC-CHECK  rdp-sec-check.pl
 
 Run the tool:
 
-```nohighlight
+``nohighlight
 $ ./rdp-sec-check.pl
 Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ )
 Copyright (C) 2014 Mark Lowe (mrl@portcullis-security.com)

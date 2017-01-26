@@ -5,8 +5,8 @@
     <description>A small website blog for cyber sec and pentesting adventures. </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 26 Jan 2017 12:46:34 +0000</pubDate>
-    <lastBuildDate>Thu, 26 Jan 2017 12:46:34 +0000</lastBuildDate>
+    <pubDate>Thu, 26 Jan 2017 12:56:01 +0000</pubDate>
+    <lastBuildDate>Thu, 26 Jan 2017 12:56:01 +0000</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -18,6 +18,7 @@ Some folks might already be saying, big deal, tools such as Nmap and its NSE scr
 
 &lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;nmap -p 3389 --script rdp-enum-encryption &amp;lt;Target-host&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;and the likes of &lt;a href=&quot;http://www.xrdp.org&quot;&gt;XRDP&lt;/a&gt; etc can do this already and your initial thoughts you would be right; however, the Portcullis rdp-sec-check tool is not intended to replace the likes of this Nmap script or any type of manual verification, on the contrary, it is there to augment the testing of this service by providing additional context and continuity of any testing that is already underway or that has taken place.&lt;/p&gt;
 
 &lt;p&gt;Ok so here’s what Portcullis have to say about ‘rdp-sec-check’:&lt;/p&gt;
@@ -102,7 +103,7 @@ Lockfile removed.
 
 &lt;p&gt;Now thats the CPAN dependency is taken care of, we can now move on to getting the rdp-sec-check tool. At the time of writing this blog post 26th January 2017, the most recent version of the tool is:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt; rdp-sec-check-0.9.tgz
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;rdp-sec-check-0.9.tgz
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;After searching Github and the Portcullis website, this is the most recent version available that I could find. The tool itself can be obtained in a few methods:&lt;/p&gt;
@@ -155,32 +156,41 @@ COPYING.GPL  COPYING.RDP-SEC-CHECK  rdp-sec-check.pl
 
 &lt;p&gt;Run the tool:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;$ ./rdp-sec-check.pl
+&lt;p&gt;``nohighlight
+$ ./rdp-sec-check.pl
 Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ )
-Copyright (C) 2014 Mark Lowe (mrl@portcullis-security.com)
+Copyright (C) 2014 Mark Lowe (mrl@portcullis-security.com)&lt;/p&gt;
 
-./rdp-sec-check.pl [ options ]  ( --file hosts.txt | host | host:port )
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;./rdp-sec-check.pl [ options ]  ( –file hosts.txt&lt;/td&gt;
+      &lt;td&gt;host&lt;/td&gt;
+      &lt;td&gt;host:port )&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-options are:
+&lt;p&gt;options are:&lt;/p&gt;
 
-  --file hosts.txt	targets, one ip:port per line
-  --outfile out.log	output logfile
-  --timeout sec		receive timeout (default 10s)
-  --retries times	number of retries after timeout
-  --verbose				
-  --debug
-  --help
+&lt;p&gt;–file hosts.txt	targets, one ip:port per line
+  –outfile out.log	output logfile
+  –timeout sec		receive timeout (default 10s)
+  –retries times	number of retries after timeout
+  –verbose				
+  –debug
+  –help&lt;/p&gt;
 
-Example:
+&lt;p&gt;Example:
          ./rdp-sec-check.pl 192.168.1.1
-         ./rdp-sec-check.pl --file hosts.txt --timeout 15 --retries 3
-         ./rdp-sec-check.pl --outfile rdp.log 192.168.69.69:3389
-         ./rdp-sec-check.pl --file hosts.txt --outfile rdp.log –verbose
-&lt;/code&gt;&lt;/pre&gt;
+         ./rdp-sec-check.pl –file hosts.txt –timeout 15 –retries 3
+         ./rdp-sec-check.pl –outfile rdp.log 192.168.69.69:3389
+         ./rdp-sec-check.pl –file hosts.txt –outfile rdp.log –verbose&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+Here’s some sample output from the tool when used on an engagement against hosts which had active remote desktop services:
 
-&lt;p&gt;Here’s some sample output from the tool when used on an engagement against hosts which had active remote desktop services:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ ) at Mon Jan 16 14:16:37 2017
+```nohighlight
+Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ ) at Mon Jan 16 14:16:37 2017
 
 [+] Scanning 31 hosts
 
@@ -224,6 +234,7 @@ Port:      3389
 [-] 10.1.1.131:3389 has issue FIPS_SUPPORTED_BUT_NOT_MANDATED
 [-] 10.1.1.131:3389 has issue NLA_SUPPORTED_BUT_NOT_MANDATED_DOS
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;&lt;em&gt;NB: The above IP address and any identifying information has been removed/altered to protect the integrity of the client tested.&lt;/em&gt;&lt;/p&gt;
 
