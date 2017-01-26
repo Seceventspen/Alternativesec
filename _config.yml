@@ -8,10 +8,10 @@ title_description: "Looking at security from alternative means. I am a self conf
 I Should have been in the Avengers, but it wouldn't have been fair on the others!
 Any opinions expressed here are my own and not that of my employer."
 title_image: "/img/Mask.jpg"
-google_analytics: "UA-20365477-4"
+#google_analytics: "UA-20365477-4"
 #disqus_account: cartenoire
 github_repository: https://github.com/Seceventspen/Alternativesec
-addthis_id: ra-513c6fa83da6ec67
+#addthis_id: ra-513c6fa83da6ec67
 post_limit: 5
 
 # Social usernames/URLs
