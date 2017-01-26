@@ -24,6 +24,7 @@ nmap -p 3389 --script rdp-enum-encryption <Target-host>
 and the likes of [XRDP](http://www.xrdp.org) etc can do this already and your initial thoughts you would be right; however, the Portcullis rdp-sec-check tool is not intended to replace the likes of this Nmap script or any type of manual verification, on the contrary, it is there to augment the testing of this service by providing additional context and continuity of any testing that is already underway or that has taken place.
 
 Ok so here’s what Portcullis have to say about ‘rdp-sec-check’:
+
 ```nohighlight
 rdp-sec-check is a Perl script to enumerate security settings of an RDP Service (AKA Terminal Services)
 
@@ -65,27 +66,33 @@ More information on the CPAN Encoding::BER module can be found here **[CPAN-Enco
 **Installing the module**
 
 So not having worked much with Perl before (don’t hate me) or the CPAN repo, I’ll admit I was like ‘erm, I’m not really 100% on what or how to do this!’ So breaking it down lets sort the Cpan dependancy first. Fire up a terminal (depending on OS, you might need to sudo this command and the screen output may vary. I‘ve installed on both, a Kali rolling instance and Ubuntu 16.04 Lts and the process/screen output differed slightly) and type:
+
 ```nohighlight
 $ sudo cpan
 ```
 
 This new line should appear:
+
 ```nohighlight
 cpan[1]>
 ```
 
 After ‘cpan[1]>’ type 'install Encoding::BER:' like so:
+
 ```nohighlight
 cpan[1]> install Encoding::BER
 ```
 
 This will now begin to check and run through the install of the module. As mentioned above depending on system and whether you have carried out cpan updates before, the screen output and time to install may vary, though in the end you should see something along these lines:
+
 ```nohighlight
   /usr/bin/make install  -- OK
 
 cpan[2]> exit
 ```
+
 OR
+
 ```nohighlight
 DONE
 cpan[2]>
@@ -96,6 +103,7 @@ Once we see this and assuming no errors popped up during the install, all we nee
 ```nohighlight
 cpan[2]>exit
 ```
+
 You should be greeted with the following output or similar:
 
 ```nohighlight
@@ -104,10 +112,13 @@ Lockfile removed.
 ```
 
 Now thats the CPAN dependency is taken care of, we can now move on to getting the rdp-sec-check tool. At the time of writing this blog post 26th January 2017, the most recent version of the tool is:
+
 ```nohighlight
  rdp-sec-check-0.9.tgz
 ```
+
 After searching Github and the Portcullis website, this is the most recent version available that I could find. The tool itself can be obtained in a few methods:
+
 ```
 wget https://labs.portcullis.co.uk/download/rdp-sec-check-0.9.tgz
 
@@ -117,6 +128,7 @@ git clone https://github.com/portcullislabs/rdp-sec-check.git
 Or by visiting *[HERE](https://labs.portcullis.co.uk/downloads/)* and browsing through the Portcullis download page.
 
 I used the *'wget'* method and the file saved to my downloads location:
+
 ```nohighlight
 :~$ wget https://labs.portcullis.co.uk/download/rdp-sec-check-0.9.tgz
 --2017-01-26 10:22:29--  https://labs.portcullis.co.uk/download/rdp-sec-check-0.9.tgz
@@ -132,6 +144,7 @@ rdp-sec-check-0.9.tgz             100%[=========================================
 ```
 
 Next we need to extract the contents. If you’re following along with the install process and are not already in the same location where the file was downloaded to, change to that location now and then run:
+
 ```nohighlight
 :~$ tar xvfz rdp-sec-check-0.9.tgz
 rdp-sec-check-0.9/
@@ -141,6 +154,7 @@ rdp-sec-check-0.9/COPYING.RDP-SEC-CHECK
 ```
 
 Thats us pretty much ready to go; however, my OCD kicks in as I like all my tools all in the same location. So I move the new ‘rdp-sec-check-0.9’ directory to my /opt directory (though this is personal preference and not required). I’m sure you all already know how to do this anyway!
+
 ```nohighlight
 $ sudo mv rdp-sec-check-0.9 /opt
 ```
@@ -148,6 +162,7 @@ $ sudo mv rdp-sec-check-0.9 /opt
 Within the /opt directory should now be the your newly moved ‘rdp-sec-check-0.9’ directory!
 
 From here its just a matter of running the tool:
+
 ```nohighlight
 $ cd /opt/rdp-sec-check-0.9
 $ ls
@@ -155,6 +170,7 @@ COPYING.GPL  COPYING.RDP-SEC-CHECK  rdp-sec-check.pl
 ```
 
 Run the tool:
+
 ```nohighlight
 $ ./rdp-sec-check.pl
 Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ )
@@ -180,6 +196,7 @@ Example:
 ```
 
 Here’s some sample output from the tool when used on an engagement against hosts which had active remote desktop services:
+
 ```nohighlight
 Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ ) at Mon Jan 16 14:16:37 2017
 
