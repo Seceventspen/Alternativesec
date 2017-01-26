@@ -57,11 +57,11 @@ More information can be found here **[CPAN-WIKI](https://en.wikipedia.org/wiki/C
 
 **Encoding::BER module**
 
-So what is this ‘Encoding::BER’ module you speak of? Ok, I’ll admit I had no idea what this was and other than what the information I’ve read over tells me, I still don't know much more than this:
+So, what is this ‘Encoding::BER’ module you speak of? Ok, I’ll admit I had no idea what this was and other than what the information I’ve read over tells me, I still don't know much more than this:
 
 *“The Encoding::BER - Perl module is used for encoding/decoding data using ASN.1 Basic Encoding Rules (BER)”*
 
-So, basically to me (and possibly you), it allows us to take advantage of this perl module to encode/decode data. Plus, it makes the Portcullis rdp-psec-check tool work (which is really the main bit we care about at present!).
+So, basically to me (and possibly you), it allows us to take advantage of this perl module to encode/decode data. Plus, it makes the Portcullis rdp-sec-check tool work (which is really the main bit we care about at present!).
 
 More information on the CPAN Encoding::BER module can be found here **[CPAN-Encoding::BER](http://search.cpan.org/~jaw/Encoding-BER-1.02/lib/Encoding/BER.pm)**
 
