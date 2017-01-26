@@ -17,7 +17,8 @@ tags:
 Following on from my previous blog post on **[NLA](https://www.alternativesec.xyz/pentesting/2017/01/02/NLA-How-to/)**, a tool to help with RDP enumeration has been suggested to me to explore. The tool's name is ‘rep-sec-check’ by Portcullis Labs.
 
 Having surfed over to the Protcullis website to check out this tool I found a handy introduction to it. As expected it covers basically what the tool is and how it goes about its business. Obviously the name gives it away, ‘rdp-sec-check’, it's another tool for checking the RDP security configuration of a target host.
-Some folks might already be saying, big deal, tools such as Nmap and its NSE script for checking RDP
+Some folks might already be saying, big deal, tools such as Nmap and its NSE script for checking RDP:
+
 ```nohighlight
 nmap -p 3389 --script rdp-enum-encryption <Target-host>
 ```
@@ -86,7 +87,7 @@ cpan[1]> install Encoding::BER
 This will now begin to check and run through the install of the module. As mentioned above depending on system and whether you have carried out cpan updates before, the screen output and time to install may vary, though in the end you should see something along these lines:
 
 ```nohighlight
-  /usr/bin/make install  -- OK
+/usr/bin/make install  -- OK
 
 cpan[2]> exit
 ```
