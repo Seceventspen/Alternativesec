@@ -90,7 +90,7 @@ This will now begin to check and run through the install of the module. As menti
 ```nohighlight
 /usr/bin/make install  -- OK
 
-cpan[2]> exit
+cpan[2]>
 ```
 
 OR
