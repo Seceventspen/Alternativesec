@@ -35,9 +35,6 @@
 <meta name="theme-color" content="#ffffff">
 
 
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-513c6fa83da6ec67"></script>
-
 
 
 
@@ -121,12 +118,14 @@
         <span itemprop="articleBody"><p>Following on from my previous blog post on <strong><a href="https://www.alternativesec.xyz/pentesting/2017/01/02/NLA-How-to/">NLA</a></strong>, a tool to help with RDP enumeration has been suggested to me to explore. The tool’s name is ‘rep-sec-check’ by Portcullis Labs.</p>
 
 <p>Having surfed over to the Protcullis website to check out this tool I found a handy introduction to it. As expected it covers basically what the tool is and how it goes about its business. Obviously the name gives it away, ‘rdp-sec-check’, it’s another tool for checking the RDP security configuration of a target host.
-Some folks might already be saying, big deal, tools such as Nmap and its NSE script for checking RDP</p>
+Some folks might already be saying, big deal, tools such as Nmap and its NSE script for checking RDP:</p>
+
 <pre><code class="language-nohighlight">nmap -p 3389 --script rdp-enum-encryption &lt;Target-host&gt;
 </code></pre>
 <p>and the likes of <a href="http://www.xrdp.org">XRDP</a> etc can do this already and your initial thoughts you would be right; however, the Portcullis rdp-sec-check tool is not intended to replace the likes of this Nmap script or any type of manual verification, on the contrary, it is there to augment the testing of this service by providing additional context and continuity of any testing that is already underway or that has taken place.</p>
 
 <p>Ok so here’s what Portcullis have to say about ‘rdp-sec-check’:</p>
+
 <pre><code class="language-nohighlight">rdp-sec-check is a Perl script to enumerate security settings of an RDP Service (AKA Terminal Services)
 
 It does not require authentication, only network connectivity to TCP port 3389.
@@ -167,23 +166,29 @@ The following potential security issues are flagged if present:
 <p><strong>Installing the module</strong></p>
 
 <p>So not having worked much with Perl before (don’t hate me) or the CPAN repo, I’ll admit I was like ‘erm, I’m not really 100% on what or how to do this!’ So breaking it down lets sort the Cpan dependancy first. Fire up a terminal (depending on OS, you might need to sudo this command and the screen output may vary. I‘ve installed on both, a Kali rolling instance and Ubuntu 16.04 Lts and the process/screen output differed slightly) and type:</p>
+
 <pre><code class="language-nohighlight">$ sudo cpan
 </code></pre>
 
 <p>This new line should appear:</p>
+
 <pre><code class="language-nohighlight">cpan[1]&gt;
 </code></pre>
 
 <p>After ‘cpan[1]&gt;’ type ‘install Encoding::BER:’ like so:</p>
+
 <pre><code class="language-nohighlight">cpan[1]&gt; install Encoding::BER
 </code></pre>
 
 <p>This will now begin to check and run through the install of the module. As mentioned above depending on system and whether you have carried out cpan updates before, the screen output and time to install may vary, though in the end you should see something along these lines:</p>
-<pre><code class="language-nohighlight">  /usr/bin/make install  -- OK
+
+<pre><code class="language-nohighlight">/usr/bin/make install  -- OK
 
 cpan[2]&gt; exit
 </code></pre>
+
 <p>OR</p>
+
 <pre><code class="language-nohighlight">DONE
 cpan[2]&gt;
 </code></pre>
@@ -192,6 +197,7 @@ cpan[2]&gt;
 
 <pre><code class="language-nohighlight">cpan[2]&gt;exit
 </code></pre>
+
 <p>You should be greeted with the following output or similar:</p>
 
 <pre><code class="language-nohighlight">cpan[2]&gt; exit
@@ -199,9 +205,12 @@ Lockfile removed.
 </code></pre>
 
 <p>Now thats the CPAN dependency is taken care of, we can now move on to getting the rdp-sec-check tool. At the time of writing this blog post 26th January 2017, the most recent version of the tool is:</p>
+
 <pre><code class="language-nohighlight"> rdp-sec-check-0.9.tgz
 </code></pre>
+
 <p>After searching Github and the Portcullis website, this is the most recent version available that I could find. The tool itself can be obtained in a few methods:</p>
+
 <div class="highlighter-rouge"><pre class="highlight"><code>wget https://labs.portcullis.co.uk/download/rdp-sec-check-0.9.tgz
 
 git clone https://github.com/portcullislabs/rdp-sec-check.git
@@ -211,6 +220,7 @@ git clone https://github.com/portcullislabs/rdp-sec-check.git
 <p>Or by visiting <em><a href="https://labs.portcullis.co.uk/downloads/">HERE</a></em> and browsing through the Portcullis download page.</p>
 
 <p>I used the <em>‘wget’</em> method and the file saved to my downloads location:</p>
+
 <pre><code class="language-nohighlight">:~$ wget https://labs.portcullis.co.uk/download/rdp-sec-check-0.9.tgz
 --2017-01-26 10:22:29--  https://labs.portcullis.co.uk/download/rdp-sec-check-0.9.tgz
 Resolving labs.portcullis.co.uk (labs.portcullis.co.uk)... 77.75.105.66
@@ -225,6 +235,7 @@ rdp-sec-check-0.9.tgz             100%[=========================================
 </code></pre>
 
 <p>Next we need to extract the contents. If you’re following along with the install process and are not already in the same location where the file was downloaded to, change to that location now and then run:</p>
+
 <pre><code class="language-nohighlight">:~$ tar xvfz rdp-sec-check-0.9.tgz
 rdp-sec-check-0.9/
 rdp-sec-check-0.9/rdp-sec-check.pl
@@ -233,18 +244,21 @@ rdp-sec-check-0.9/COPYING.RDP-SEC-CHECK
 </code></pre>
 
 <p>Thats us pretty much ready to go; however, my OCD kicks in as I like all my tools all in the same location. So I move the new ‘rdp-sec-check-0.9’ directory to my /opt directory (though this is personal preference and not required). I’m sure you all already know how to do this anyway!</p>
+
 <pre><code class="language-nohighlight">$ sudo mv rdp-sec-check-0.9 /opt
 </code></pre>
 
 <p>Within the /opt directory should now be the your newly moved ‘rdp-sec-check-0.9’ directory!</p>
 
 <p>From here its just a matter of running the tool:</p>
+
 <pre><code class="language-nohighlight">$ cd /opt/rdp-sec-check-0.9
 $ ls
 COPYING.GPL  COPYING.RDP-SEC-CHECK  rdp-sec-check.pl
 </code></pre>
 
 <p>Run the tool:</p>
+
 <pre><code class="language-nohighlight">$ ./rdp-sec-check.pl
 Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ )
 Copyright (C) 2014 Mark Lowe (mrl@portcullis-security.com)
@@ -269,6 +283,7 @@ Example:
 </code></pre>
 
 <p>Here’s some sample output from the tool when used on an engagement against hosts which had active remote desktop services:</p>
+
 <pre><code class="language-nohighlight">Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ ) at Mon Jan 16 14:16:37 2017
 
 [+] Scanning 31 hosts
@@ -332,11 +347,6 @@ Port:      3389
         
 
         
-        <div class="share">
-          <!-- Go to www.addthis.com/dashboard to customize your tools -->
-          <div class="addthis_sharing_toolbox"></div>
-        </div>
-        
 
         
         <div class="tags">
@@ -399,21 +409,6 @@ Port:      3389
 
 
 
-
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-20365477-4']);
-          _gaq.push(['_trackPageview']);
-  (function () {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-  })();
-</script>
 
 
 
