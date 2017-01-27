@@ -173,7 +173,7 @@ COPYING.GPL  COPYING.RDP-SEC-CHECK  rdp-sec-check.pl
 
 Run the tool:
 
-``nohighlight
+```nohighlight
 $ ./rdp-sec-check.pl
 Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ )
 Copyright (C) 2014 Mark Lowe (mrl@portcullis-security.com)
