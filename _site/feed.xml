@@ -5,13 +5,13 @@
     <description>A small website blog for cyber sec and pentesting adventures. </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 26 Jan 2017 12:56:01 +0000</pubDate>
-    <lastBuildDate>Thu, 26 Jan 2017 12:56:01 +0000</lastBuildDate>
+    <pubDate>Wed, 01 Feb 2017 09:51:50 +0000</pubDate>
+    <lastBuildDate>Wed, 01 Feb 2017 09:51:50 +0000</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
         <title>RDP Sec Check Tool</title>
-        <description>&lt;p&gt;Following on from my previous blog post on &lt;strong&gt;&lt;a href=&quot;https://www.alternativesec.xyz/pentesting/2017/01/02/NLA-How-to/&quot;&gt;NLA&lt;/a&gt;&lt;/strong&gt;, a tool to help with RDP enumeration has been suggested to me to explore. The tool’s name is ‘rep-sec-check’ by Portcullis Labs.&lt;/p&gt;
+        <description>&lt;p&gt;Following on from my previous blog post on &lt;strong&gt;&lt;a href=&quot;https://www.alternativesec.xyz/pentesting/2017/01/02/NLA-How-to/&quot;&gt;NLA&lt;/a&gt;&lt;/strong&gt;, a tool to help with RDP enumeration has been suggested to me to explore. The tools name is ‘rdp-sec-check’ by Portcullis Labs.&lt;/p&gt;
 
 &lt;p&gt;Having surfed over to the Protcullis website to check out this tool I found a handy introduction to it. As expected it covers basically what the tool is and how it goes about its business. Obviously the name gives it away, ‘rdp-sec-check’, it’s another tool for checking the RDP security configuration of a target host.
 Some folks might already be saying, big deal, tools such as Nmap and its NSE script for checking RDP:&lt;/p&gt;
@@ -38,7 +38,7 @@ The following potential security issues are flagged if present:
 
 &lt;p&gt;So now we know about the tool and what it does, I guess it’s time to install it!&lt;/p&gt;
 
-&lt;p&gt;Not so fast for me … It seems the tool has a dependency to ensure it works correctly. The Portcullis info mentions CPAN and BER module. What’s CPAN and Whats an Encoding::BER when you’re at home???&lt;/p&gt;
+&lt;p&gt;Not so fast for me … It seems the tool has a dependency to ensure it works correctly. The Portcullis info mentions CPAN and BER module. What’s CPAN and what’s an Encoding::BER when you’re at home???&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;CPAN&lt;/strong&gt;&lt;/p&gt;
 
@@ -52,11 +52,11 @@ The following potential security issues are flagged if present:
 
 &lt;p&gt;&lt;strong&gt;Encoding::BER module&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;So what is this ‘Encoding::BER’ module you speak of? Ok, I’ll admit I had no idea what this was and other than what the information I’ve read over tells me, I still don’t know much more than this:&lt;/p&gt;
+&lt;p&gt;So, what is this ‘Encoding::BER’ module you speak of? Ok, I’ll admit I had no idea what this was and other than what the information I’ve read over tells me, I still don’t know much more than this:&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;“The Encoding::BER - Perl module is used for encoding/decoding data using ASN.1 Basic Encoding Rules (BER)”&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;So, basically to me (and possibly you), it allows us to take advantage of this perl module to encode/decode data. Plus, it makes the Portcullis rdp-psec-check tool work (which is really the main bit we care about at present!).&lt;/p&gt;
+&lt;p&gt;So, basically to me (and possibly you), it allows us to take advantage of this perl module to encode/decode data. Plus, it makes the Portcullis rdp-sec-check tool work (which is really the main bit we care about at present!).&lt;/p&gt;
 
 &lt;p&gt;More information on the CPAN Encoding::BER module can be found here &lt;strong&gt;&lt;a href=&quot;http://search.cpan.org/~jaw/Encoding-BER-1.02/lib/Encoding/BER.pm&quot;&gt;CPAN-Encoding::BER&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
@@ -81,7 +81,7 @@ The following potential security issues are flagged if present:
 
 &lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;/usr/bin/make install  -- OK
 
-cpan[2]&amp;gt; exit
+cpan[2]&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;OR&lt;/p&gt;
@@ -156,41 +156,32 @@ COPYING.GPL  COPYING.RDP-SEC-CHECK  rdp-sec-check.pl
 
 &lt;p&gt;Run the tool:&lt;/p&gt;
 
-&lt;p&gt;``nohighlight
-$ ./rdp-sec-check.pl
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;$ ./rdp-sec-check.pl
 Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ )
-Copyright (C) 2014 Mark Lowe (mrl@portcullis-security.com)&lt;/p&gt;
+Copyright (C) 2014 Mark Lowe (mrl@portcullis-security.com)
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;./rdp-sec-check.pl [ options ]  ( –file hosts.txt&lt;/td&gt;
-      &lt;td&gt;host&lt;/td&gt;
-      &lt;td&gt;host:port )&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+./rdp-sec-check.pl [ options ]  ( --file hosts.txt | host | host:port )
 
-&lt;p&gt;options are:&lt;/p&gt;
+options are:
 
-&lt;p&gt;–file hosts.txt	targets, one ip:port per line
-  –outfile out.log	output logfile
-  –timeout sec		receive timeout (default 10s)
-  –retries times	number of retries after timeout
-  –verbose				
-  –debug
-  –help&lt;/p&gt;
+  --file hosts.txt	targets, one ip:port per line
+  --outfile out.log	output logfile
+  --timeout sec		receive timeout (default 10s)
+  --retries times	number of retries after timeout
+  --verbose				
+  --debug
+  --help
 
-&lt;p&gt;Example:
+Example:
          ./rdp-sec-check.pl 192.168.1.1
-         ./rdp-sec-check.pl –file hosts.txt –timeout 15 –retries 3
-         ./rdp-sec-check.pl –outfile rdp.log 192.168.69.69:3389
-         ./rdp-sec-check.pl –file hosts.txt –outfile rdp.log –verbose&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-Here’s some sample output from the tool when used on an engagement against hosts which had active remote desktop services:
+         ./rdp-sec-check.pl --file hosts.txt --timeout 15 --retries 3
+         ./rdp-sec-check.pl --outfile rdp.log 192.168.69.69:3389
+         ./rdp-sec-check.pl --file hosts.txt --outfile rdp.log –verbose
+&lt;/code&gt;&lt;/pre&gt;
 
-```nohighlight
-Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ ) at Mon Jan 16 14:16:37 2017
+&lt;p&gt;Here’s some sample output from the tool when used on an engagement against hosts which had active remote desktop services:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ ) at Mon Jan 16 14:16:37 2017
 
 [+] Scanning 31 hosts
 
@@ -234,7 +225,6 @@ Port:      3389
 [-] 10.1.1.131:3389 has issue FIPS_SUPPORTED_BUT_NOT_MANDATED
 [-] 10.1.1.131:3389 has issue NLA_SUPPORTED_BUT_NOT_MANDATED_DOS
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
 
 &lt;p&gt;&lt;em&gt;NB: The above IP address and any identifying information has been removed/altered to protect the integrity of the client tested.&lt;/em&gt;&lt;/p&gt;
 

@@ -115,7 +115,7 @@
 
         
 
-        <span itemprop="articleBody"><p>Following on from my previous blog post on <strong><a href="https://www.alternativesec.xyz/pentesting/2017/01/02/NLA-How-to/">NLA</a></strong>, a tool to help with RDP enumeration has been suggested to me to explore. The tool’s name is ‘rep-sec-check’ by Portcullis Labs.</p>
+        <span itemprop="articleBody"><p>Following on from my previous blog post on <strong><a href="https://www.alternativesec.xyz/pentesting/2017/01/02/NLA-How-to/">NLA</a></strong>, a tool to help with RDP enumeration has been suggested to me to explore. The tools name is ‘rdp-sec-check’ by Portcullis Labs.</p>
 
 <p>Having surfed over to the Protcullis website to check out this tool I found a handy introduction to it. As expected it covers basically what the tool is and how it goes about its business. Obviously the name gives it away, ‘rdp-sec-check’, it’s another tool for checking the RDP security configuration of a target host.
 Some folks might already be saying, big deal, tools such as Nmap and its NSE script for checking RDP:</p>
@@ -142,7 +142,7 @@ The following potential security issues are flagged if present:
 
 <p>So now we know about the tool and what it does, I guess it’s time to install it!</p>
 
-<p>Not so fast for me … It seems the tool has a dependency to ensure it works correctly. The Portcullis info mentions CPAN and BER module. What’s CPAN and Whats an Encoding::BER when you’re at home???</p>
+<p>Not so fast for me … It seems the tool has a dependency to ensure it works correctly. The Portcullis info mentions CPAN and BER module. What’s CPAN and what’s an Encoding::BER when you’re at home???</p>
 
 <p><strong>CPAN</strong></p>
 
@@ -156,11 +156,11 @@ The following potential security issues are flagged if present:
 
 <p><strong>Encoding::BER module</strong></p>
 
-<p>So what is this ‘Encoding::BER’ module you speak of? Ok, I’ll admit I had no idea what this was and other than what the information I’ve read over tells me, I still don’t know much more than this:</p>
+<p>So, what is this ‘Encoding::BER’ module you speak of? Ok, I’ll admit I had no idea what this was and other than what the information I’ve read over tells me, I still don’t know much more than this:</p>
 
 <p><em>“The Encoding::BER - Perl module is used for encoding/decoding data using ASN.1 Basic Encoding Rules (BER)”</em></p>
 
-<p>So, basically to me (and possibly you), it allows us to take advantage of this perl module to encode/decode data. Plus, it makes the Portcullis rdp-psec-check tool work (which is really the main bit we care about at present!).</p>
+<p>So, basically to me (and possibly you), it allows us to take advantage of this perl module to encode/decode data. Plus, it makes the Portcullis rdp-sec-check tool work (which is really the main bit we care about at present!).</p>
 
 <p>More information on the CPAN Encoding::BER module can be found here <strong><a href="http://search.cpan.org/~jaw/Encoding-BER-1.02/lib/Encoding/BER.pm">CPAN-Encoding::BER</a></strong></p>
 
@@ -185,7 +185,7 @@ The following potential security issues are flagged if present:
 
 <pre><code class="language-nohighlight">/usr/bin/make install  -- OK
 
-cpan[2]&gt; exit
+cpan[2]&gt;
 </code></pre>
 
 <p>OR</p>
@@ -260,41 +260,32 @@ COPYING.GPL  COPYING.RDP-SEC-CHECK  rdp-sec-check.pl
 
 <p>Run the tool:</p>
 
-<p>``nohighlight
-$ ./rdp-sec-check.pl
+<pre><code class="language-nohighlight">$ ./rdp-sec-check.pl
 Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ )
-Copyright (C) 2014 Mark Lowe (mrl@portcullis-security.com)</p>
+Copyright (C) 2014 Mark Lowe (mrl@portcullis-security.com)
 
-<table>
-  <tbody>
-    <tr>
-      <td>./rdp-sec-check.pl [ options ]  ( –file hosts.txt</td>
-      <td>host</td>
-      <td>host:port )</td>
-    </tr>
-  </tbody>
-</table>
+./rdp-sec-check.pl [ options ]  ( --file hosts.txt | host | host:port )
 
-<p>options are:</p>
+options are:
 
-<p>–file hosts.txt	targets, one ip:port per line
-  –outfile out.log	output logfile
-  –timeout sec		receive timeout (default 10s)
-  –retries times	number of retries after timeout
-  –verbose				
-  –debug
-  –help</p>
+  --file hosts.txt	targets, one ip:port per line
+  --outfile out.log	output logfile
+  --timeout sec		receive timeout (default 10s)
+  --retries times	number of retries after timeout
+  --verbose				
+  --debug
+  --help
 
-<p>Example:
+Example:
          ./rdp-sec-check.pl 192.168.1.1
-         ./rdp-sec-check.pl –file hosts.txt –timeout 15 –retries 3
-         ./rdp-sec-check.pl –outfile rdp.log 192.168.69.69:3389
-         ./rdp-sec-check.pl –file hosts.txt –outfile rdp.log –verbose</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>
-Here’s some sample output from the tool when used on an engagement against hosts which had active remote desktop services:
+         ./rdp-sec-check.pl --file hosts.txt --timeout 15 --retries 3
+         ./rdp-sec-check.pl --outfile rdp.log 192.168.69.69:3389
+         ./rdp-sec-check.pl --file hosts.txt --outfile rdp.log –verbose
+</code></pre>
 
-```nohighlight
-Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ ) at Mon Jan 16 14:16:37 2017
+<p>Here’s some sample output from the tool when used on an engagement against hosts which had active remote desktop services:</p>
+
+<pre><code class="language-nohighlight">Starting rdp-sec-check v0.9-beta ( http://labs.portcullis.co.uk/application/rdp-sec-check/ ) at Mon Jan 16 14:16:37 2017
 
 [+] Scanning 31 hosts
 
@@ -338,7 +329,6 @@ Port:      3389
 [-] 10.1.1.131:3389 has issue FIPS_SUPPORTED_BUT_NOT_MANDATED
 [-] 10.1.1.131:3389 has issue NLA_SUPPORTED_BUT_NOT_MANDATED_DOS
 </code></pre>
-</div>
 
 <p><em>NB: The above IP address and any identifying information has been removed/altered to protect the integrity of the client tested.</em></p>
 
