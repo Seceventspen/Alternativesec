@@ -5,9 +5,42 @@
     <description>A small website blog for cyber sec and pentesting adventures. </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 01 Feb 2017 09:51:50 +0000</pubDate>
-    <lastBuildDate>Wed, 01 Feb 2017 09:51:50 +0000</lastBuildDate>
+    <pubDate>Wed, 01 Feb 2017 10:16:29 +0000</pubDate>
+    <lastBuildDate>Wed, 01 Feb 2017 10:16:29 +0000</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Vulnhub Series</title>
+        <description>&lt;p&gt;So when not working, doing the daily family things, studying, working out, eating, sleeping and trying to fit anything else into the day that needs done, I aim to try to have a crack at the &lt;a href=&quot;https://www.vulnhub.com&quot;&gt;VulnHub VM’s&lt;/a&gt;. The folks that put their time and effort in to constructing these scenarios truly deserve more credit, as they allow folks (such as myself) to practice, hone skills, but most importantly, continue to LEARN!! So from me to you, Thank you!!&lt;/p&gt;
+
+&lt;p&gt;I’m by no means a seasoned pro, in fact, I rather prefer calling myself a perpetual student! I’m sure some of you may have opinions on my methods or how I do certain things. There may well be, and in fact, probably are easier ways of doing things than what I’ll cover in these write-ups. So please, stick with me!&lt;/p&gt;
+
+&lt;p&gt;If there is anything you’d like to point out/suggest, feel free to get in touch and share the knowledge. At the end of the day this is how we progress; we learn by hard work and by knowledge being passed on …&lt;/p&gt;
+
+&lt;p&gt;So with all of the above in mind, and in addition to the other types of blog content you’ll get the chance to read here at AlternativeSec, I’ll be doing a Vulnhub category, writing up the VM’s (I get the time to have a crack at) as I go along and hopefully pwn, on my way to Vulnhub &lt;a href=&quot;http://www.urbandictionary.com/define.php?term=Leet%20o'clock&quot;&gt;‘L33t o’clock’&lt;/a&gt; stardom!&lt;/p&gt;
+
+&lt;p&gt;If you haven’t already done so, drop by &lt;a href=&quot;https://twitter.com/VulnHub&quot;&gt;Vulnhub’s Twitter&lt;/a&gt; and get upto date with what’s going on. Also don’t forget to drop a like or thank you to the creators of the VM’s you have a crack at!&lt;/p&gt;
+
+&lt;p&gt;Until the next time!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 01 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/vulnhub/2017/02/01/Vulnhub-Series/</link>
+        <guid isPermaLink="true">http://localhost:4000/vulnhub/2017/02/01/Vulnhub-Series/</guid>
+        
+        <category>2017</category>
+        
+        <category>Vulnhub</category>
+        
+        <category>walkthroughs</category>
+        
+        <category>Expect</category>
+        
+        <category>New</category>
+        
+        
+        <category>Vulnhub</category>
+        
+      </item>
     
       <item>
         <title>RDP Sec Check Tool</title>
