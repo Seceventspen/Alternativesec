@@ -60,7 +60,7 @@ The course promotes and teaches you from the outset how to leverage a way of thi
 
 ***TOP TIP 2: Keep detailed and accurate notes as you go! It’s worth noting things that you tried but that didn’t not work. This will be helpful in the future, trust me!***
 
-***TOP TIP 3: If you can, write up you lab report as you go along or a frequent intervals. You'll thank me for this!***
+***TOP TIP 3: If you can, write up you lab report as you go along or at frequent intervals. You'll thank me for this!***
 
 **The Exam....**
 
@@ -114,19 +114,19 @@ Not passing is a little disappointing but, realistically it was great learning e
 
 I'll be have a few days away from labs, Vulnhub and studying, as in the last few months I've sat and passed other exams and I fancy a little down time. Though in anticipation, I have blown the dust of the following books and listed one other that I intend to purchase:
 
-Nmap Network Scanning by Gordon Fyodor Lyon
+- Nmap Network Scanning by Gordon Fyodor Lyon
 
-Network Security Assessment by Chris McNab (3rd Edition highly recommended)
+- Network Security Assessment by Chris McNab (3rd Edition highly recommended)
 
-The Web Application Hackers Handbook by Dafydd Stuttard and Marcus Pinto (also a great book)
+- The Web Application Hackers Handbook by Dafydd Stuttard and Marcus Pinto (also a great book)
 
-The Hackers Playbook 2 by Peter Kim
+- The Hackers Playbook 2 by Peter Kim
 
-Gray Hat Hacking: The Ethical Hackers Handbook by Daniel Regalado
+- Gray Hat Hacking: The Ethical Hackers Handbook by Daniel Regalado
 
-Black Hat Python by Justin Seitz - Purchasing this
+- Black Hat Python by Justin Seitz - Purchasing this
 
-I will also be getting more interactive with my peers aby continuing to volunteer for security conference such as Bsides, 44Con, SteelCon.
+I will also be getting more interactive with my peers by continuing to volunteer for security conference such as Bsides, 44Con, SteelCon.
 
 **Wrapping things up...**
 
@@ -142,4 +142,4 @@ I'll be coming back OffSec and I’ll be trying harder!
 
 ![Try](/images/OSCP/Try-Harder.jpg)
 
-Further information on the Offensive Security PWK course can be found [HERE.](https://www.offensive-security.com/information-security-training/penetration-testing-training-kali-linux/) 
+Further information on the Offensive Security PWK course can be found [HERE.](https://www.offensive-security.com/information-security-training/penetration-testing-training-kali-linux/)
