@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      OSCP Review 2017: I'll by Trying Harder!
+title:      OSCP Adventures
 date:       2017-02-16
 author:     SecEventsPen
 summary:    OSCP write-up.
@@ -26,13 +26,13 @@ The build up, lab time, trials and tribulations are almost like a 'right of pass
 
 Okay, so a quick heads up as to what you get when you sign up (this has been covered many times before, so I'll not reinvent the wheel):
 
-The OSCP certification is the culmination of a course called Pen-testing with Kali (PwK).
+- The OSCP certification is the culmination of a course called Pen-testing with Kali (PwK).
 
 What you get when you register/sign-up for the course:
 
-A Pen Testing with Kali Lab guide. This weighs in at around 350+ page PDF document.
-A wealth of media files that go hand in hand with the PDF lab guide.
-Access to the OSCP student forums.
+- A Pen Testing with Kali Lab guide. This weighs in at around 350+ page PDF document.
+- A wealth of media files that go hand in hand with the PDF lab guide.
+- Access to the OSCP student forums.
 
 The coursework outlined in the PDF guide is self paced and includes exercises at the end of most of the sections. The lab guide covers all aspects of a penetration test from information gathering to post-exploitation, complete with some tools and processes that can be used in each of the stages of a penetration test.
 
@@ -56,9 +56,11 @@ One of the unique aspects about the OSCP course and lab environment is that, stu
 
 The course promotes and teaches you from the outset how to leverage a way of thinking outside the box, this ultimately leads to compromising and rooting most of the boxes in the lab and a rewarding sense of achievement! I did spend a very large percentage of my time, when not working in the labs, using our old faithful friend Google to try to gather details and information that related to a machine I was trying to break into! The Internet is a gold mine of information which you will definitely need to use to obtain information on some aspect of a machine, configuration of service.
 
-***TOP TIP 1: Enumerate, Enumerate, Enumerate !!! In fact this has become my second motto of this course (unofficially of course).
-TOP TIP 2: Keep detailed and accurate notes as you go! It’s worth noting things that you tried but that didn’t not work. This will be helpful in the future, trust me!
-TOP TIP 3: If you can, write up you lab report as you go along or a frequent intervals. You'll thank me for this!***
+***TOP TIP 1: Enumerate, Enumerate, Enumerate !!! In fact this has become my second motto of this course (unofficially of course).***
+
+***TOP TIP 2: Keep detailed and accurate notes as you go! It’s worth noting things that you tried but that didn’t not work. This will be helpful in the future, trust me!***
+
+***TOP TIP 3: If you can, write up you lab report as you go along or a frequent intervals. You'll thank me for this!***
 
 **The Exam....**
 
@@ -76,15 +78,15 @@ General tips for exam preparation:
 
 Identify your weaknesses in the labs and really reinforce those principles. Buffer overflows and the more advanced web app attack vectors were the biggest things I worked on during my break between lab times. Sort out anything you think you'll need the day before i.e. additional files, common exploits and bookmark useful info then centralise it, making it easily accessible.
 
-With any exam make sure you get enough rest the night before. You'll have picked your allotted started date and time, don’t lose track of that. The exam times and available slots vary and can start at odd times.
+- With any exam make sure you get enough rest the night before. You'll have picked your allotted started date and time, don’t lose track of that. The exam times and available slots vary and can start at odd times.
 
-Sort your prep out the day before, a decent playlist is a must, and have water and snacks readily available too! The exam is intense and staying hydrated and nourished can be harder than it sounds if you are like you become like 'a dog with a bone' for the task at hand. .
+- Sort your prep out the day before, a decent playlist is a must, and have water and snacks readily available too! The exam is intense and staying hydrated and nourished can be harder than it sounds if you are like you become like 'a dog with a bone' for the task at hand. .
 
-Schedule breaks. Easier said than done and I fell foul off my own rule by not sticking to it! Even if you find you are stuck or you have almost popped a box, that next breakthrough might be another hour or two away. You can really benefit from stepping away and clearing your mind, especially if you are struggling (and you will, everyone does).
+- Schedule breaks. Easier said than done and I fell foul off my own rule by not sticking to it! Even if you find you are stuck or you have almost popped a box, that next breakthrough might be another hour or two away. You can really benefit from stepping away and clearing your mind, especially if you are struggling (and you will, everyone does).
 
-Don’t fixate/rabbit holes - Do not spend a large number of hours on working on your first box (like me). By now you should have your own methodology and what the course teaches you is to follow a methodology. If something just is not working, move to something else and come back later on.
+- Don’t fixate/rabbit holes - Do not spend a large number of hours on working on your first box (like me). By now you should have your own methodology and what the course teaches you is to follow a methodology. If something just is not working, move to something else and come back later on.
 
-Enumerate, Enumerate, Enumerate!!! Then enumerate some more! All to often I made the statement "I've enumerated as much as I can!" (You’ll say this to!) And in all honestly, I always found something else by changing my search term or approach!
+- Enumerate, Enumerate, Enumerate!!! Then enumerate some more! All to often I made the statement "I've enumerated as much as I can!" (You’ll say this to!) And in all honestly, I always found something else by changing my search term or approach!
 
 **Build up and Exam attempt....**
 
@@ -98,7 +100,7 @@ This led to a good few days of enumeration and research before I popped my first
 
 I made decent head way through the lab over the first 30 days, rooting a variety of hosts. The last 30 days though proved more difficult with progress slowing down dramatically due to work, family life and the difficulty level on the remaining hosts. I re-read the course material and just could not find a foothold in any of the machines.
 
-If like me, you bought one of the packages (or are going to) i.e. 30, 60, 90 days, then your first exam attempt included. Due to some long standing commitments I had to book my exam for a date several weeks after my lab time ended but I scheduled and took an exam to see just how at what level I was at and potentially how far off I was.
+If like me, you bought one of the packages (or are going to) i.e. 30, 60, 90 days, then your first exam attempt is included. Due to some long standing commitments I had to book my exam for a date several weeks after my lab time ended but I scheduled and took an exam to see just how at what level I was at and potentially how far off I was.
 
 I managed to successfully complete 2 out of the 5 exam questions I was given, gaining an initial shell and subsequent root level privilege to get the max points for those questions. After that I spent the remaining exam time trying to figure out how to gain a foothold or low privilege shell on the remaining hosts to gather more points.
 
@@ -137,3 +139,7 @@ Overall, I would highly recommend this certification to anyone looking to furthe
 I would just like to thank all the folks who put up with me over that last 3 months, for all the questions asked, gentle nudges in the right direction, my wife, family and finally Offensive Security, for an incredible, frustrating, educational experience that is the road to obtaining the OSCP Certification!
 
 I'll be coming back OffSec and I’ll be trying harder!
+
+![Try](/images/OSCP/Try-Harder.jpg)
+
+Further information on the Offensive Security PWK course can be found [HERE.](https://www.offensive-security.com/information-security-training/penetration-testing-training-kali-linux/) 
