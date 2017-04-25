@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      OSCP Adventures
-date:       2017-02-16
+date:       2017-04-16
 author:     SecEventsPen
 summary:    OSCP write-up.
 categories: AlternativeSec
