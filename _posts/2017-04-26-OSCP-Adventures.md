@@ -132,7 +132,7 @@ I will also be getting more interactive with my peers by continuing to volunteer
 
 I'll also go back and revisit these great free resources as well:
 
-- **[OvereTheWire](http://overthewire.org/wargames/)**
+- **[Over The Wire](http://overthewire.org/wargames/)**
 
 - **[Expliot-Exercises](https://exploit-exercises.com)**
 
