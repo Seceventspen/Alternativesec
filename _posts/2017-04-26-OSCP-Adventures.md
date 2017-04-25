@@ -110,7 +110,7 @@ Ultimately I didn't score enough points to pass on this occasion and I chose not
 
 ![Sad](/images/OSCP/Sad-box.jpg)
 
-Not passing is a little disappointing but, realistically it was great learning experience, one I have come away from with a lot of valuable information. This information will enable me to progress and work towards my next attempt, though more importantly become a better all-round pen tester!
+Not passing is a little disappointing but, realistically it was a great learning experience, one I have come away from with a lot of valuable information. This information will enable me to progress and work towards my next attempt, though more importantly become a better all-round pen tester!
 
 **What now...**
 
@@ -138,11 +138,14 @@ I'll also go back and revisit these great free resources as well:
 
 **Wrapping things up...**
 
-As much as I want to give pointed advice above instead of only a review and general tips, I believe I am carrying on a long tradition of helping those that are really interested in earning their OSCP in "Trying Harder." The important thing to remember is that many others have actually gotten the certification before you and it is possible. The course is going to be easier if you have been a penetration tester for five years already. If you are like me, you just have to keep trying harder and failing and training yourself until it "clicks." Do not be ashamed to try an exam and fail. The course is purposely very difficult.
+As much as I want to give pointed advice above, I have instead only gave a review and general tips. I believe by doing this I am carrying on a long tradition of helping those that are really interested in earning their OSCP in "Trying Harder." The important thing to remember is that many others have actually gotten the certification before me/you and it is possible. The course is going to be easier if you have been a penetration tester for 3-5 years already. If you are like me, you just have to keep trying harder and failing and training yourself until it "clicks." Do not be ashamed to try an exam and fail. The course is purposely very difficult.
 
-The OSCP is so difficult because it has an uncompromising bar that you have to surpass to obtain it.  You can only lean on friends and colleagues so much, for advice and information, there are study groups etc. Neither can you just memorise your way through this type of exam. What you do have to do, of your own free will and accord, is reach a certain level and apply that knowledge in an exam environment that changes every time just like the real world. You must demonstrate these abilities and everything you have learnt/know at every step of the way to pass. I am just not at that stage right now and neither am I ashamed or embarrassed to say it either!
+The OSCP is so difficult because it has an uncompromising bar that you have to surpass to obtain it.  You can only lean on friends and colleagues so much for advice and information, there are no study groups etc. Neither can you just memorise your way through this type of exam.
 
-Overall, I would highly recommend this certification to anyone looking to further their career in penetration testing and the broader cyber security field. What you learn from the OSCP labs and exam is invaluable! In addition,
+
+ What you do have to do, of your own free will and accord, is reach a certain level and apply that knowledge in an exam environment that changes every time just like the real world. You must demonstrate these abilities and everything you have learnt/know at every step of the way to pass. I am just not at that stage right now and neither am I ashamed or embarrassed to say it either!
+
+Overall, I would highly recommend this certification to anyone looking to further their career in penetration testing and the broader cyber security field. What you learn from the OSCP labs and exam is invaluable!
 
 I would just like to thank all the folks who put up with me over that last 3 months, for all the questions asked, gentle nudges in the right direction, my wife, family and finally Offensive Security, for an incredible, frustrating, educational experience that is the road to obtaining the OSCP Certification!
 
