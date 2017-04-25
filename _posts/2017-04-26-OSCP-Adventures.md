@@ -22,7 +22,7 @@ I'll start by saying that, unfortunately, I didn't receive my Offensive Security
 
 ![Oops](/images/OSCP/Mistake.jpg)
 
-The build up, lab time, trials and tribulations are almost like a 'right of passage' to obtain the OSCP certification. My decision based  to take the exam was based on improving my abilities as a tester and I can say that this is a professional education experience unlike anything most will have ever undertaken.
+The build up, lab time, trials and tribulations are almost like a 'right of passage' to obtain the OSCP certification. My decision to take the exam was based on improving my abilities as a tester and I can say that this is a professional education experience unlike anything most will have ever undertaken.
 
 Okay, so a quick heads up as to what you get when you sign up (this has been covered many times before, so I'll not reinvent the wheel):
 
@@ -46,19 +46,19 @@ On a whole there is very little structure or guidance for making your way throug
 
 If any of the above sounds like a bad thing, the OSCP is probably not for you. As penetration tester I had to have a long think about things before signing up. I have a family, like most folks do, and have to make time for everything that entails, as well as work. Factoring OSCP in the equation, means ultimately sacrificing time elsewhere ... that’s just life unfortunately! It is very important to be honest with yourself and really assess whether you can make this commitment so that you do not waste your time (which is precious enough as it is) and money that will ultimately end in disappointment with what is an incredible course.
 
-You may not see this now, but the lack of guidance throughout the labs is a right of passage of the OSCP experience, everyone goes through it and this forces you to figure things out of your own! In the real world, a hacker, shady bad guy or someone who's just down right malicious would be figuring out the target environment on their own.
+You may not see this now, but the lack of guidance throughout the labs is a right of passage of the OSCP experience, everyone goes through it and this forces you to figure things out of your own accord! In the real world, a hacker, shady bad guy or someone who's just down right malicious would be figuring out the target environment on their own.
 
 **Try Harder.... This phrase will plague you, but in a good way!**
 
-If you ask anyone, or are familiar with Offsec, then you're probably already aware of the infamous motto (some may say troll) of the Offsec forum, IRC channel and its support staff is "Try Harder.". Most requests for help are met with this reply. While the OSCP forum is an avenue to allow student to raise questions and possible receive a "helpful" nudge along the way for almost every machine in the lab, most of the post are either people are venting frustrations and troll like jokes than actual hints! In just about every case, as like so many before me, the 'penny' only drops regarding the hint after completing that specific machine.
+If you ask anyone, or are familiar with Offsec, then you're probably already aware of the infamous motto (some may say troll) of the Offsec forum, IRC channel and its support staff is "Try Harder.". Most requests for help are met with this reply. While the OSCP forum is an avenue to allow students to raise questions and possibly receive a "helpful" nudge along the way for almost every machine in the lab, most of the post are either people are venting frustrations and troll like jokes than actual hints! In just about every case, as like so many before me, the 'penny' only drops regarding the hint after completing that specific machine.
 
 One of the unique aspects about the OSCP course and lab environment is that, student's are not just taught how to use a tool! A student is expected to know what it does, how it does it and then have you apply that tool to enumerate/interact with or exploit a box. If you don’t know something, you're expected to take it upon yourself to learn it and then apply it! This really trains you to think differently about a problem and put yourself in an evil doers/hacker's shoes so that you can assess the environment. If you only apply the tools depicted in the lab documents and video training, opportunities to excel in the lab will be painful and slow. That said, working with a defined set of tools to achieve an objective shows hard work and commitment in its own right!
 
-The course promotes and teaches you from the outset how to leverage a way of thinking outside the box, this ultimately leads to compromising and rooting most of the boxes in the lab and a rewarding sense of achievement! I did spend a very large percentage of my time, when not working in the labs, using our old faithful friend Google to try to gather details and information that related to a machine I was trying to break into! The Internet is a gold mine of information which you will definitely need to use to obtain information on some aspect of a machine, configuration of service.
+The course promotes and teaches you from the outset how to leverage a way of thinking outside the box, this ultimately leads to compromising and rooting most of the boxes in the lab and a rewarding sense of achievement! I did spend a very large percentage of my time, when not working in the labs, using our old faithful friend Google to try to gather details and information that related to a machine I was trying to break into! The Internet is a gold mine of information which you will definitely need to use to obtain information on some aspect of a machine, configuration or its service.
 
 ***TOP TIP 1: Enumerate, Enumerate, Enumerate !!! In fact this has become my second motto of this course (unofficially of course).***
 
-***TOP TIP 2: Keep detailed and accurate notes as you go! It’s worth noting things that you tried but that didn’t not work. This will be helpful in the future, trust me!***
+***TOP TIP 2: Keep detailed and accurate notes as you go! It’s worth noting things that you tried but that did not work. This will be helpful in the future, trust me!***
 
 ***TOP TIP 3: If you can, write up you lab report as you go along or at frequent intervals. You'll thank me for this!***
 
@@ -80,7 +80,7 @@ Identify your weaknesses in the labs and really reinforce those principles. Buff
 
 - With any exam make sure you get enough rest the night before. You'll have picked your allotted started date and time, don’t lose track of that. The exam times and available slots vary and can start at odd times.
 
-- Sort your prep out the day before, a decent playlist is a must, and have water and snacks readily available too! The exam is intense and staying hydrated and nourished can be harder than it sounds if you are like you become like 'a dog with a bone' for the task at hand. .
+- Sort your prep out the day before, a decent music playlist is a must, and have water and snacks readily available too! The exam is intense and staying hydrated and nourished can be harder than it sounds if you are like you become like 'a dog with a bone' for the task at hand. .
 
 - Schedule breaks. Easier said than done and I fell foul off my own rule by not sticking to it! Even if you find you are stuck or you have almost popped a box, that next breakthrough might be another hour or two away. You can really benefit from stepping away and clearing your mind, especially if you are struggling (and you will, everyone does).
 
@@ -90,25 +90,27 @@ Identify your weaknesses in the labs and really reinforce those principles. Buff
 
 **Build up and Exam attempt....**
 
-I bought a total of 60 lab days. The majority of my lab time was carried out in the evenings, weekends and holiday periods etc., all while juggling work and family life (work pays the bills and no-one likes to disappoint the wife and kids!). Most week day evenings I would spent on average 3-4 hours per night, at least 3 nights a week. Weekend lab time was juggled around family life, though generally I would average about 10hrs over the weekend.
+I bought a total of 60 lab days. The majority of my lab time was carried out in the evenings, weekends and holiday periods etc., all while juggling work and family life (work pays the bills and no-one likes to disappoint the wife and kids!). Most week day evenings I would spent on average 3-4 hours per night, at least 3 nights a week. Weekend lab time was juggled around family life, though generally I would average about 8-10hrs over the weekend.
 
-I started off pretty slow, taking the first 5 days of lab time going through the lab PDF and carrying out the lab exercises. After that I jumped straight into the main labs. I decided to adopt the approach and idea of not using Metasploit's pre-built attack modules to automate the compromise/privilege escalation of a host.
+I started off pretty slow, taking the first 5 days of lab time going through the lab PDF and carrying out the lab exercises. After that I jumped straight into the main labs. I decided to adopt the approach and idea of not using Metasploit's pre-built attack modules to automate the compromise/privilege escalation of a host. You don't have to take this approach, as you can use Metasploit as many times as you like!
 
 ***TOP TIP 4: You can only use Metasploit once in the exam, no point relying on it early from the get go!***
 
+![Hack](/images/OSCP/HackThePlanet.jpg)
+
 This led to a good few days of enumeration and research before I popped my first box! Though when I did, I understood the method, the exploit, how the code worked and why it worked! This gave me a great sense of achievement! Once into the manual exploitation swing of things, compromising hosts became quicker!
 
-I made decent head way through the lab over the first 30 days, rooting a variety of hosts. The last 30 days though proved more difficult with progress slowing down dramatically due to work, family life and the difficulty level on the remaining hosts. I re-read the course material and just could not find a foothold in any of the machines.
+I made decent head way through the lab over the first 30 days, rooting a variety of hosts. The last 30 days though proved more difficult with progress slowing down dramatically due to work, family life and the difficulty level on the remaining hosts. I re-read the course material, along with additonal research but struggled to find a foothold in any of the other machines before my lab time expired.
 
-If like me, you bought one of the packages (or are going to) i.e. 30, 60, 90 days, then your first exam attempt is included. Due to some long standing commitments I had to book my exam for a date several weeks after my lab time ended but I scheduled and took an exam to see just how at what level I was at and potentially how far off I was.
+If like me, you bought one of the packages (or are going to) i.e. 30, 60, 90 days, then your first exam attempt is included. Due to some long standing commitments I had to book my exam for a date several weeks after my lab time ended, but I scheduled and took an exam to see just at what level I was at and potentially how far off I was.
 
-I managed to successfully complete 2 out of the 5 exam questions I was given, gaining an initial shell and subsequent root level privilege to get the max points for those questions. After that I spent the remaining exam time trying to figure out how to gain a foothold or low privilege shell on the remaining hosts to gather more points.
+On the exam itself, I managed to successfully complete 2 out of the 5 exam questions I was given, gaining an initial shell and subsequent root level privilege to get the max points for those questions. After that I spent the remaining exam time trying to figure out how to gain a foothold or low privilege shell on the remaining hosts to gather more points.
 
 Ultimately I didn't score enough points to pass on this occasion and I chose not to submit any reports.
 
 ![Sad](/images/OSCP/Sad-box.jpg)
 
-Not passing is a little disappointing but, realistically it was great learning experience, one I have come away from with a lot of valuable information. This information will enable me to progress and work towards my next attempt, though more importantly a better all-rounded pen tester!
+Not passing is a little disappointing but, realistically it was great learning experience, one I have come away from with a lot of valuable information. This information will enable me to progress and work towards my next attempt, though more importantly become a better all-round pen tester!
 
 **What now...**
 
@@ -126,7 +128,13 @@ I'll be have a few days away from labs, Vulnhub and studying, as in the last few
 
 - Black Hat Python by Justin Seitz - Purchasing this
 
-I will also be getting more interactive with my peers by continuing to volunteer for security conference such as Bsides, 44Con, SteelCon.
+I will also be getting more interactive with my peers by continuing to volunteer for security conferences such as Bsides, 44Con, SteelCon.
+
+I'll also go back and revisit these great free resources as well:
+
+- **[OvereTheWite](http://overthewire.org/wargames/)**
+
+- **[Expliot-Exercises](https://exploit-exercises.com)**
 
 **Wrapping things up...**
 
