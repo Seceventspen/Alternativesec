@@ -98,7 +98,7 @@ I started off pretty slow, taking the first 5 days of lab time going through the
 
 ![Hack](/images/OSCP/HackThePlanet.jpg)
 
-This led to a good few days of enumeration and research before I popped my first box! Though when I did, I understood the method, the exploit, how the code worked and why it worked! This gave me a great sense of achievement! Once into the manual exploitation swing of things, compromising hosts became quicker!
+This led to a good few days of enumeration and research before I popped my first box! Though when I did, I understood the method, the exploit, how the code worked and why it worked! This gave me a great sense of achievement! Once into the manual exploitation swing of things, compromising hosts became quicker but not necessarily easier!
 
 I made decent head way through the lab over the first 30 days, rooting a variety of hosts. The last 30 days though proved more difficult with progress slowing down dramatically due to work, family life and the difficulty level on the remaining hosts. I re-read the course material, along with additonal research but struggled to find a foothold in any of the other machines before my lab time expired.
 
