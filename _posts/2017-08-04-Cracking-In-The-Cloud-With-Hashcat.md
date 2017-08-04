@@ -165,6 +165,8 @@ The GPUs we have access to are the following:
 
 ![P2 select](/images/AWS/teslak801.jpg)
 
+***Note: The Teslak80 GPU's aren't specifically optimised for Hashcat or GPU cracking, though they remain a viable option***
+
 The Hashcat website advises we need the follow Nvidia Driver when using Nvidia GPUs:
 
 ![Hashcat drivers](/images/AWS/HashcatNvidiaDrivers.png)
