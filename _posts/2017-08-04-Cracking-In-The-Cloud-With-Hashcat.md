@@ -104,7 +104,7 @@ To do this we need to select ‘AWS Marketplace’ and enter ‘Kali’ into the
 
 Next you’ll need to run through the set up, ensuring you have selected the relevant  ‘P2’ instance type. There are three (3) to choose from:
 
-![P2 select](/images/AWS/P2Select.png)
+![P2 Choices](/images/AWS/P2Cost.png)
 
 Again be mindful of which instance you pick! We opted for the ‘p2.8xlarge’ which costs $7.20 per hour! The ‘p2.16xlarge’ sounds great but at $14.40 per hour, you better have deep pockets if you go for that option!!!
 
