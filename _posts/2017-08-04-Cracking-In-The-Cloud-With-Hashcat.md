@@ -411,7 +411,7 @@ Basically you have to ask yourself if cracking that type of handshake would be w
 
 ***Note: Since writing this we have came across another series of GPUs available to EC2 instances. So keep an eye out for 'Cracking in the Cloud with Hashcat Part 2'***
 
-** Summary**
+**Summary**
 
 So to round things up, we have covered the following areas:
 
