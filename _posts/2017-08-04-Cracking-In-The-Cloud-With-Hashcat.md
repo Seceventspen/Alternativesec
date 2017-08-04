@@ -22,7 +22,7 @@ tags:
 
 **Quick apology**
 
-A quick apology for the absence of content over the last few months! Without boring you with the details a few things basically made posting to the blog more difficult, with the main issue being changing jobs and that particular employer having a policy which prevented me from doing personal research and extra-curricular activities outside of working hours in my own time. Anyway, this is no longer an issue and ‘Cracking in the cloud with Hashcat’ will be the first post after my hiatus.
+A quick apology for the absence of content over the last few months! Without boring you with the details, a few things basically made posting to the blog more difficult, with the main issue being changing jobs to a new role which took up a lot more of my time. This prevented me from doing personal research and extra-curricular activities outside of working hours. Anyway, this is no longer an issue and ‘Cracking in the cloud with Hashcat’ will be the first post after my hiatus.
 
 Moving swiftly on now that’s put to bed!
 
