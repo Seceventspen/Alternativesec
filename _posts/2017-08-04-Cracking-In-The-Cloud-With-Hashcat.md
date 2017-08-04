@@ -124,7 +124,7 @@ At this stage you’ll be prompted for to set up a ‘Key pair’ to enable secu
 
 ![Key pair](/images/AWS/keypair.png)
 
-Note: Your key is only as safe as the place you store it!!
+***Note: Your key is only as safe as the place you store it!!***
 
 Once you have set-up your key pair your instance will begin to be built, once built it will begin to start automatically, you will start incurring charges from here on until you stop the instance!
 
