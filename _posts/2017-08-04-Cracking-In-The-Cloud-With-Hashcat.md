@@ -74,7 +74,7 @@ If you land on the ‘Services’ page, look for the ‘Compute’ heading, then
 
 ![Services](/images/AWS/Services.png)
 
-If you land on the ‘Dashboard’ page you just need to look for this …..
+If you land on the ‘Dashboard’ page, then it will look for this...
 
 ![Dashboard](/images/AWS/Dashboard.png)
 
@@ -406,6 +406,8 @@ Having your own ‘Cloud Cracking Station’ definitely has its advantages, the 
 If Hashcat did run for the maximum 72hrs as noted when I ran the initial crack against it then I would have been charged $518.40….
 
 Basically you have to ask yourself if cracking that type of handshake would be worth it! Only you can judge the COST to BENEFIT ratio!!
+
+***Note: Since writing this we have came across another series of GPUs available to EC2 instances. So keep an eye out for 'Cracking in the Cloud with Hashcat Part 2'***
 
 ** Summary**
 
