@@ -313,7 +313,7 @@ Speed.Dev.#*.....:   732.7 kH/s
 
 ***Note: In-depth Benchmark output will be posted in a separate blog post.***
 
-**Hash files, dictionaries and Wordlists to your instance**
+**Hash files, dictionaries and Wordlists**
 
 Now that Hashcat is up and running and we have our benchmarks recorded. The next order of business would be to upload any hash files, dictionaries and wordlists you will want to make use of!
 
