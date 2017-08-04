@@ -22,7 +22,7 @@ tags:
 
 **Quick apology**
 
-A quick apology for to the absence of content over the last few months! Without boring you with the details a few things basically made posting to the blog more difficult, with the main issue being changing jobs and that particular employer having a policy which prevented me from doing personal research and extra-curricular activities outside of working hours in my own time. Anyway, this is no longer an issue and the ‘Cracking in the cloud’ will be the first post after the hiatus.
+A quick apology for the absence of content over the last few months! Without boring you with the details a few things basically made posting to the blog more difficult, with the main issue being changing jobs and that particular employer having a policy which prevented me from doing personal research and extra-curricular activities outside of working hours in my own time. Anyway, this is no longer an issue and ‘Cracking in the cloud with Hashcat’ will be the first post after my hiatus.
 
 Moving swiftly on now that’s put to bed!
 
@@ -38,7 +38,7 @@ After a quick search on the pentesters best friend, Google, it leads my colleagu
 
 Myself and my colleague are in no way taking credit for their work and are in no way trying to rehash what they have already done.
 
-So, why do the write up then? Well, we decided to write this post due to the fact, that out of all the walk-throughs the above blog posts were the closest to a ‘condensed deployment solution’, however we ran into problems with both while trying to set them up. We’re not sure why we were not able to follow either guide completely to the end, but suffice to say that we couldn’t, changes to AWS EC2 instances seem the most likely option.  So, we decided to document our set-up process with the view that it may help others.
+So, why do the write up then? Well, we decided to write this post due to the fact, that out of all the walk-throughs, the above blog posts were the closest to a ‘condensed deployment solution’, however we ran into problems with both while trying to set them up. We’re not sure why we were not able to follow either guide completely to the end, but suffice to say that we couldn’t, changes to AWS EC2 instances seem the most likely option.  So, we decided to document our set-up process with the view that it may help others.
 
 **Now for the boring but serious part…**
 
