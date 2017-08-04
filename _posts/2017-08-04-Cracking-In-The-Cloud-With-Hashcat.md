@@ -106,9 +106,9 @@ Next you’ll need to run through the set up, ensuring you have selected the rel
 
 ![P2 select|medium](/images/AWS/P2Select.png)
 
-***Note: These prices are subject to change and were correct at the time of writing.***
-
 Again be mindful of which instance you pick! We opted for the ‘p2.8xlarge’ which costs $7.20 per hour! The ‘p2.16xlarge’ sounds great but at $14.40 per hour, you better have deep pockets if you go for that option!!!
+
+***Note: These prices are subject to change and were correct at the time of writing.***
 
 After this you need to go through the rest of the configuration steps. We’ll leave that up to you to work through. Though as a pointer, we accepted most of the defaults apart from the following:
 
@@ -143,7 +143,7 @@ Connecting via Linux/OSX is relative simple. Just open up a terminal, then go ba
 
 ![Key pair](/images/AWS/InstanceConnect.png)
 
- One thing to note is that the Kali instance or potentially a AWS security feature prevents ‘root’ login and the SSH command specified will fail. Edit the command and replace ‘root@’ with ‘ec2-user@’.  Example:
+One thing to note is that the Kali instance or potentially a AWS security feature prevents ‘root’ login and the SSH command specified will fail. Edit the command and replace ‘root@’ with ‘ec2-user@’.  Example:
 
 ```nohighlight
 ssh -i "your.pem" ec2-user@ec2-your-aws-instance-ip-address.compute-1.amazonaws.com
@@ -389,7 +389,7 @@ This represents a 10-character password using numbers and lowercase letters only
 12a34b56c7
 ```
 
-A great Hashcat reference book can be found on Amazon, titled [Hashcrack]( https://www.amazon.co.uk/dp/1540444961/ref=sr_1_1?ie=UTF8&qid=1501851519&sr=8-1&keywords=hash+crack).
+A great Hashcat reference book can be found on Amazon, titled [Hashcrack](https://www.amazon.co.uk/dp/1540444961/ref=sr_1_1?ie=UTF8&qid=1501851519&sr=8-1&keywords=hash+crack).
 
 **Now you’re good to go…**
 
@@ -399,11 +399,11 @@ I’ll say this again, this is not a free service and will YOU cost money! Be mi
 
 Having your own ‘Cloud Cracking Station’ definitely has its advantages, the main two being, no physical equipment to maintain or worry about, access to it anywhere and anytime (if you set it up correctly); however this comes at a trade off … COST! This type of service has a cost associated with it, at the time of writing based on the instance we used it cost $7.20 per/hour. If you take for example the WPA2 example above, when I ran a mask attack against that type of situation the estimated time to complete was three (3) days or 72hrs. To put things into context:
 
-```nohighlight
+```math
 72hrs x $7.20 = $518.40
 ```
 
-If Hashcat did run for the maximum 72hrs as noted when I ran the initial crack against it then I would have been charged $518.40….
+If Hashcat did run for the maximum 72hrs as noted when I ran the initial crack against it then I would have been charged **$518.40**
 
 Basically you have to ask yourself if cracking that type of handshake would be worth it! Only you can judge the COST to BENEFIT ratio!!
 
