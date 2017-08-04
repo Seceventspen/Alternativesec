@@ -335,7 +335,7 @@ scp -i "your-key.pem" ~/Path/to/your/file ec2-user@ec2-your-aws-IP-address.compu
 AWS SCP Download command:
 
 ```nohighlight
-$scp -i ~/Downloads/your-key.pem ec2-user@ec2-your-aws-ip-address.compute-1.amazonaws.com:~/Path/To/output-file.txt ~/Download/
+$scp -i "your-key.pem" ec2-user@ec2-your-aws-ip-address.compute-1.amazonaws.com:~/Path/To/output-file.txt ~/Download/
 ```
 
 With these commands you will be able to easily upload/download any files you wish.
