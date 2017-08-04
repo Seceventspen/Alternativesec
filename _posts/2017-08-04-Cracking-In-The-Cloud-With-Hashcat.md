@@ -78,7 +78,7 @@ If you land on the ‘Dashboard’ page, then it will look for this...
 
 ![Dashboard](/images/AWS/Dashboard.png)
 
-To generate out support case to have our default instance complete we can do the following:
+To generate our support case to have our default instance complete we can do the following:
 
 -	Click on the support drop down
 -	Select create case
