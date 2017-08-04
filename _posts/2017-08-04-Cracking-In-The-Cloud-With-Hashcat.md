@@ -104,7 +104,7 @@ To do this we need to select ‘AWS Marketplace’ and enter ‘Kali’ into the
 
 Next you’ll need to run through the set up, ensuring you have selected the relevant  ‘P2’ instance type. There are three (3) to choose from:
 
-![P2 select](/images/AWS/P2Select.png)
+![P2 select|medium](/images/AWS/P2Select.png)
 
 ***Note: These prices are subject to change and were correct at the time of writing.***
 
@@ -226,7 +226,7 @@ nvidia-smi -ac 2505,875
 
 **acp 0– Applications-Clocks-Permission = 0**, Sets Applications Clocks Permission to “Unrestricted”
 
-**ac 2505, 875– ** Specifies maximum memory and graphics clocks.
+**ac 2505, 875–** Specifies maximum memory and graphics clocks.
 
 
 **Hashcat Benchmark**
