@@ -196,7 +196,7 @@ sudo airodump-ng -c 1 --bssid 4C:**:**:**:**:FA -w WPAcrack wlan0mon --ignore-ne
 
 wlan0mon. The wireless interface
 
---ignore-negative-one. Fixes the ‘fixed channel : -1’ error message
+--ignore-negative-one. Fixes the ‘fixed channel : -1’ error message that is sometimes encountered.
 
 ![Captured Handshake](/images/WiFi/cappedhandshake.png)
 
@@ -222,7 +222,7 @@ sudo aireplay-ng --deauth 100 -a 4C:**:**:**:**:FA wlan0mon --ignore-negative-on
 
 wlan0mon. The wireless interface
 
---ignore-negative-one. Fixes the ‘fixed channel : -1’ error message
+--ignore-negative-one. Fixes the ‘fixed channel : -1’ error message that is sometimes encountered.
 
 Though if you want to carry out a direct attack against one of the clients associated with the target AP we can simply issue the following command in a second terminal while leaving the previous command running in the 1st terminal:
 
