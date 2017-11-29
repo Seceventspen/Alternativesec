@@ -188,14 +188,15 @@ Now with our list of identified  AP's and their associated information we can sp
 sudo airodump-ng -c 1 --bssid 4C:09:D4:73:E4:FA -w WPAcrack wlan0mon --ignore-negative-one
 ```
 
--c	//The channel for the wireless network
+-c.	The channel for the wireless network
 
---bssid	//The MAC address of the access point
+--bssid.The MAC address of the access point
 
--w	//The file name prefix for the file which will contain authentication handshake
-wlan0mon	//The wireless interface
+-w. The file name prefix for the file which will contain authentication handshake
 
---ignore-negative-one	//Fixes the ‘fixed channel : -1’ error message
+wlan0mon. The wireless interface
+
+--ignore-negative-one. Fixes the ‘fixed channel : -1’ error message
 
 ![Captured Handshake](/images/WiFi/cappedhandshake.png)
 
@@ -215,13 +216,13 @@ sudo aireplay-ng --deauth 100 -a 4C:09:D4:73:E4:FA wlan0mon --ignore-negative-on
 
 --deauth 100 	//The number of de-authenticate frames you want to send (0 for unlimited)
 
--a 	//The MAC address of the access point
+-a.The MAC address of the access point
 
--c 	//The MAC address of the client
+-c. The MAC address of the client
 
-wlan0mon 	//The wireless interface
+wlan0mon. The wireless interface
 
---ignore-negative-one 	//Fixes the ‘fixed channel : -1’ error message
+--ignore-negative-one. Fixes the ‘fixed channel : -1’ error message
 
 Though if you want to carry out a direct attack against one of the clients associated with the target AP we can simply issue the following command in a second terminal while leaving the previous command running in the 1st terminal:
 
@@ -247,8 +248,8 @@ Once we have captured a handshake we can them move onto cracking our handshake u
 sudo aircrack-ng  -b 4C:09:D4:73:E4:FA WPAcrack-01.cap  -w '/home/host/Tools/SecLists/Passwords/darkc0de.txt'
 ```
 
-'-w' 	//The name of the dictionary file
-'-b' 	//The MAC address of the access point
+'-w' The name of the dictionary file
+'-b' The MAC address of the access point
 
 ![Cracking](/images/WiFi/aircrack-crack.png)
 
@@ -262,7 +263,9 @@ To change from the aircrack-ng format to Hashcat file format for cracking purpos
 
 [Download Hashcat-Utils](https://github.com/hashcat/hashcat-utils/releases/)
 
+
 [Hashcat Wiki](https://hashcat.net/wiki/doku.php?id=hashcat_utils)
+
 
 Navigate to the 'hashcat-utils-1.8' directory, then to '/bin' and issues the following command:
 
