@@ -37,7 +37,7 @@ The IEEE 802.11 standard is a set of technical specifications for implementing W
 
 There are many versions of the 802.11 wireless networks; however, the most important/relevant to us as testers or security professionals are:
 
-![802.11 Table](/images/WiFi/802-11-networks.png)
+![802.11 Table](/images/WiFi/802-11-networks.PNG)
 
 **Wireless Security Overview**
 
@@ -73,7 +73,7 @@ This can be broken down into two distinct categories:
 - Active Discovery
 - Passive Discovery
 
-![Wifi Methodology](/images/WiFi/Wifi-Net-Discovery.png)
+![Wifi Methodology](/images/WiFi/Wifi-Net-Discovery.PNG)
 
 **Active Discovery**
 
@@ -247,8 +247,8 @@ Once we have captured a handshake we can them move onto cracking our handshake u
 sudo aircrack-ng  -b 4C:09:D4:73:E4:FA WPAcrack-01.cap  -w '/home/host/Tools/SecLists/Passwords/darkc0de.txt'
 ```
 
--w 	//The name of the dictionary file
--b 	//The MAC address of the access point
+'-w' 	//The name of the dictionary file
+'-b' 	//The MAC address of the access point
 
 ![Cracking](/images/WiFi/aircrack-crack.png)
 
