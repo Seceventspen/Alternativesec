@@ -214,7 +214,7 @@ Send deauth request to broadcast:
 sudo aireplay-ng --deauth 100 -a 4C:**:**:**:**:FA wlan0mon --ignore-negative-one
 ```
 
---deauth 100 	//The number of de-authenticate frames you want to send (0 for unlimited)
+--deauth 100. The number of de-authenticate frames you want to send (0 for unlimited)
 
 -a.The MAC address of the access point
 
@@ -292,7 +292,7 @@ So to round things up, we have covered the following areas:
 - Capturing a WPA handshake
 - De-Auth Attack
 - Cracking the WPA handshake with Aircrack-ng
-- File conversion  for Hashcat cracking
+- File conversion for Hashcat cracking
 
 Hopefully you found the above useful or a nice little refresher!
 
