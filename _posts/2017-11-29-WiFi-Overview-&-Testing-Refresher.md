@@ -4,7 +4,7 @@ title:      WiFi Overview & How To Refresher
 date:       2017-11-29
 author:     SecEventsPen
 summary:    WiFi Overview & Testing Refresher
-categories: How To
+categories: Pentesting
 thumbnail:  wrench
 tags:
  - 2017
