@@ -37,7 +37,7 @@ The IEEE 802.11 standard is a set of technical specifications for implementing W
 
 There are many versions of the 802.11 wireless networks; however, the most important/relevant to us as testers or security professionals are:
 
-![IEEE 802.11 Table](/images/WiFi/802-11-networks.png)
+![802.11 Table](/images/WiFi/802-11-networks.png)
 
 **Wireless Security Overview**
 
@@ -73,7 +73,7 @@ This can be broken down into two distinct categories:
 - Active Discovery
 - Passive Discovery
 
-![Wifi methodology](/images/WiFi/Wifi-Net-Discovery.png)
+![Wifi Methodology](/images/WiFi/Wifi-Net-Discovery.png)
 
 **Active Discovery**
 
@@ -146,6 +146,7 @@ Unless specifically stated otherwise, I personally, would always carry out passi
 Before getting starting we need to check that your wireless adapter is recognised. On a linux system we can issue the 'iwconfig' command:
 
 ![iwconfig](/images/WiFi/iwconfig.png)
+
 *Note: the interface name of your card, yours card interface names my differ.*
 
 With our wireless card detected we can move on to the next step.
@@ -175,7 +176,7 @@ sudo airodump-ng wlan0mon
 
 ![airodump-ng](/images/WiFi/airodumpng.png)
 
-As we can see in the screenshot above, airodump-ng displays all of the APs (access points) within range with their BSSID (MAC address), their power, the number of beacon frames, the number of data packets, the channel, the speed, the encryption method, the type of cipher used, the authentication method used, and finally, the ESSID. For our purposes of hacking WiFi, the most important fields will be the BSSID and the channel.
+As we can see in the screenshot above, airodump-ng displays all of the AP's (access points) within range with their BSSID (MAC address), their power, the number of beacon frames, the number of data packets, the channel, the speed, the encryption method, the type of cipher used, the authentication method used, and finally, the ESSID. For our purposes of hacking WiFi, the most important fields will be the BSSID and the channel.
 
 We can now target any AP on that list, obviously only target the AP's that are in-scope and only with the client's approval and authorisation!!!
 
@@ -188,9 +189,12 @@ sudo airodump-ng -c 1 --bssid 4C:09:D4:73:E4:FA -w WPAcrack wlan0mon --ignore-ne
 ```
 
 -c	//The channel for the wireless network
+
 --bssid	//The MAC address of the access point
+
 -w	//The file name prefix for the file which will contain authentication handshake
 wlan0mon	//The wireless interface
+
 --ignore-negative-one	//Fixes the ‘fixed channel : -1’ error message
 
 ![Captured Handshake](/images/WiFi/cappedhandshake.png)
@@ -201,7 +205,7 @@ Attempting to capture the handshake this way can take some time, as it requires 
 
 If you can’t wait till airodump-ng captures a handshake, you can send a message to the wireless client saying that it is no longer associated with the AP.
 
-The wireless client will then hopefully reauthenticate with the AP and we’ll capture the authentication handshake.
+The wireless client will then hopefully re-authenticate with the AP and we’ll capture the authentication handshake.
 
 Send deauth request to broadcast:
 
@@ -210,9 +214,13 @@ sudo aireplay-ng --deauth 100 -a 4C:09:D4:73:E4:FA wlan0mon --ignore-negative-on
 ```
 
 --deauth 100 	//The number of de-authenticate frames you want to send (0 for unlimited)
+
 -a 	//The MAC address of the access point
+
 -c 	//The MAC address of the client
+
 wlan0mon 	//The wireless interface
+
 --ignore-negative-one 	//Fixes the ‘fixed channel : -1’ error message
 
 Though if you want to carry out a direct attack against one of the clients associated with the target AP we can simply issue the following command in a second terminal while leaving the previous command running in the 1st terminal:
@@ -244,7 +252,7 @@ sudo aircrack-ng  -b 4C:09:D4:73:E4:FA WPAcrack-01.cap  -w '/home/host/Tools/Sec
 
 ![Cracking](/images/WiFi/aircrack-crack.png)
 
-The password cracking attempt is only as good as thre wordlist used!! It is worth doing researh on the AP or device's password policy to allow you to better tailor your password list, therefore increasing your chances of success.
+The password cracking attempt is only as good as the wordlist used!! It is worth doing research on the AP or device's password policy to allow you to better tailor your password list, therefore increasing your chances of success.
 
 Though this is not always the best way to crack a WPA/WPA2 handshake. An alternative would be to convert the aircrack '.cap' file to the Hashcat file format '.hccap'. For this you will need to have installed the 'hashcat-utils-1.8' at least.
 
@@ -252,7 +260,8 @@ Though this is not always the best way to crack a WPA/WPA2 handshake. An alterna
 
 To change from the aircrack-ng format to Hashcat file format for cracking purposes we can utilise a handy tool made by the lovely chaps at Hashcat called 'cap2hccapx'. To do this you need to have recent version of the Hashcat utils and then do the following:
 
-[Hashcat-Utils](https://github.com/hashcat/hashcat-utils/releases/)
+[Download Hashcat-Utils](https://github.com/hashcat/hashcat-utils/releases/)
+
 [Hashcat Wiki](https://hashcat.net/wiki/doku.php?id=hashcat_utils)
 
 Navigate to the 'hashcat-utils-1.8' directory, then to '/bin' and issues the following command:
@@ -263,9 +272,9 @@ Navigate to the 'hashcat-utils-1.8' directory, then to '/bin' and issues the fol
 
 *Note: Be sure to replace the name of the '.cap' file above with the name of your file.*
 
-![cap2hccap](/images/WiFi/cap2hccap.png)
+![cap2hccap](/images/WiFi/cap2hccapx.png)
 
-Now you can use Hashcat to attempt to crack the WPA/WPA2 handshake using more targeted cracking methods i.e. rule based cracking, though this is beyond the scope of this writeup. Needless to say that using Hashcat with rules and a specified password mask would be alot quicker that using a generic password list!
+Now you can use Hashcat to attempt to crack the WPA/WPA2 handshake using more targeted cracking methods i.e. rule based cracking, though this is beyond the scope of this writeup. Needless to say that using Hashcat with rules and a specified password mask would be a lot quicker that using a generic password list!
 
 **Summary**
 
