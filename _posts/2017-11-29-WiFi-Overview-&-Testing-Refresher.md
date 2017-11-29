@@ -131,7 +131,7 @@ sudo rfkill unblock all
 
 Now re-run 'sudo rfkill list' to verify the soft block has been removed. Once this is confirmed you are good to go!
 
-**DISCLAIMER***
+**DISCLAIMER**
 
 This guide is for educational purposes only! You should never attempt any of the techniques outlined in this post on live targets, unless you are the owner or have the consent of the owner and legal authority to do so i.e. a scope of work, which is a legally binding document. You have been warned ….
 
