@@ -198,7 +198,7 @@ wlan0mon. The wireless interface
 
 --ignore-negative-one. Fixes the ‘fixed channel : -1’ error message
 
-![Captured Handshake](/images/WiFi/cappedhandshake.png)
+
 
 Attempting to capture the handshake this way can take some time, as it requires the capture of many beacons and the AP to be being actively used. If you want to speed this process up you can use what is known as a 'deauthentication attack'.
 
