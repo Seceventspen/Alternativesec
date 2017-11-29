@@ -115,7 +115,7 @@ Run the following command 'sudo rfkill list':
 	Hard blocked: no
 ```
 
-***Note: The output above is just an example, it may differ from your interface names or output returned.***
+*Note: The output above is just an example, it may differ from your interface names or output returned.*
 
 As you can see 'soft block' is enabled in two places. To remove the 'soft block' we can issue the following command:
 
@@ -146,11 +146,11 @@ Unless specifically stated otherwise, I personally, would always carry out passi
 Before getting starting we need to check that your wireless adapter is recognised. On a linux system we can issue the 'iwconfig' command:
 
 ![iwconfig](/images/WiFi/iwconfig.png)
-***Note: the interface name of your card, yours card interface names my differ.***
+*Note: the interface name of your card, yours card interface names my differ.*
 
 With our wireless card detected we can move on to the next step.
 
-***Note: Useful reference for WNICs and monitor mode can be found [here](https://www.aircrack-ng.org/doku.php?id=airmon-ng)***
+*Note: Useful reference for WNICs and monitor mode can be found [here](https://www.aircrack-ng.org/doku.php?id=airmon-ng)*
 
 **Airmon-ng/Airodump-ng**
 
@@ -261,7 +261,7 @@ Navigate to the 'hashcat-utils-1.8' directory, then to '/bin' and issues the fol
 ./cap2hccapx.bin ~/WPAcrack-01.cap WPACrack.hccapx
 ```
 
-***Note: Be sure to replace the name of the '.cap' file above with the name of your file.***
+*Note: Be sure to replace the name of the '.cap' file above with the name of your file.*
 
 ![cap2hccap](/images/WiFi/cap2hccap.png)
 
