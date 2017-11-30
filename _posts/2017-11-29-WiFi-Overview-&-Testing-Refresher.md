@@ -21,14 +21,14 @@ tags:
 
 So, its been a while! Trying to keep on top of the blog hasn't really went well with work and family commitments, please accept my apologies!
 
-Anyway moving on, here's a new post covering an overview of WiFi and and some testing aspects of it! I had cause to be working with some WiFi and since it had been a while I thought I'd write up a few things which hopefully help some folks out or serves as a refresher for the more experienced among us!
+Anyway moving on, here's a new post covering an overview of WiFi and and some testing aspects of it! I had cause to be working with some WiFi AP's recently and since it had been a while from I had last done so, I thought I'd write up a few things which hopefully help some folks out or serves as a refresher for the more experienced among us!
 
 Enjoy!
 
 **What is wireless Penetration Testing**
 
 
-Wireless Penetration testing is the enumeration and examination of a target wireless networks configuration and hardware in use i.e. access points, by either passive or active means, with the aim being to highlight any security issues or information leakage. This can be further defined by the scope provided which related to each specific Wifi/WLAN assessment.
+Wireless Penetration testing is the enumeration and examination of a target wireless networks configuration and hardware in use i.e. mainly access points, by either passive or active means, with the aim being to highlight any security issues or information leakage. This can be further defined by the testing scope provided for the engagement. This should detail whats required and related to your specific Wifi/WLAN assessment.
 
 **A bit of Wireless History**
 
@@ -48,9 +48,9 @@ There are many versions of the 802.11 wireless networks; however, the most impor
 **WPA -** WiFi Protected Access. Successor to WEP with improved security. WPA uses a 256-bit shared key with each device deriving its 128-bit key. WPA included message integrity checks to determine whether or not the an attacker has captured/altered packets between the AP and Client and the TKIP (Temporal Key Integrity Protocol). TKIP was later supersede by Advanced Encryption Standard (AES). WPA has also been compromised, with publicly documented POC's available to reference and as of 2006 has been officially superseded by WPA2. It is still common to see WPA networks in use!
 
 
-**WPA2 -** This standard has increased security by enforcing the mandatory use of AES and CCMP (counter Cipher Mode with Block Chaining Message), though TKIP is still available as a fallback mechanism for interoperability. There have not been many publicly documented WPA2 vulnerabilities other than the WPS (WiFi protected SetUp) attack vector was documented, more info [here](https://scotthelme.co.uk/wifi-insecurity-wps/), up to the point of the **'Krack'** exploit being published, more info can be found [here](https://www.krackattacks.com).
+**WPA2 -** This standard has increased Wirless security by enforcing the mandatory use of AES and CCMP (counter Cipher Mode with Block Chaining Message), though TKIP is still available as a fallback mechanism for interoperability. There have not been many publicly documented WPA2 vulnerabilities other than the WPS (WiFi protected SetUp) attack vector which is publicly documented (more info [here](https://scotthelme.co.uk/wifi-insecurity-wps/)), up to the point of the **'Krack'** exploit being published in 2017, more info can be found [here](https://www.krackattacks.com).
 
-WPA2 with AES, at a minimum, should be the main implementation for SOHO environments and for Enterprise level environments, at a minimum, should be WPA2 with EAP-TLS (Extensible Authentication Protocol - Transport Layer Security).
+As a rule of thumb, WPA2 with AES, at a minimum, should be the main implementation for SOHO environments and for Enterprise level environments, at a minimum, should be WPA2 with EAP-TLS (Extensible Authentication Protocol - Transport Layer Security). Though enterprise environments may have specific client requirements and therefore you may encounter different set-ups!
 
 **Components of a Wireless Network**
 
@@ -139,7 +139,7 @@ Ok so with the serious stuff out of the way we can move on …
 
 **Quick enumeration/identification of wireless AP's**
 
-Unless specifically stated otherwise, I personally, would always carry out passive enumeration of any wireless network or AP's. If there is any type of wireless IDS/IPS in play you can avoid getting tangled up in this by using passive discovery techniques. The most noted ways to do this are using Airmon-ng (from the Aircrack suite) or Kismet. I'll cover using the Aircrack-ng suite and techniques below.
+Unless specifically stated otherwise, I personally, would always carry out passive enumeration of any wireless network or AP's in the first instance. If there is any type of wireless IDS/IPS in play you can avoid getting tangled up in this by using passive discovery techniques. The most noted ways to do this are using Airmon-ng (from the Aircrack suite) or Kismet. I'll cover using the Aircrack-ng suite and techniques below.
 
 **iwconfig**
 
@@ -200,7 +200,7 @@ wlan0mon. The wireless interface
 
 ![Captured Handshake](/images/WiFi/cappedhandshake.png)
 
-Attempting to capture the handshake this way can take some time, as it requires the capture of many beacons and the AP to be being actively used. If you want to speed this process up you can use what is known as a 'deauthentication attack'.
+Attempting to capture the handshake this way can take some time, as it requires the capture of many beacons and the AP to be being actively used. In the instance above, I captured the handshake fairly quickly; however, if you want to speed this process up you can use what is known as a 'deauthentication attack' using another tool from the Aircrack-ng suite called 'Aireplay-ng'.
 
 **DeAuthentication Attack**
 
@@ -208,13 +208,13 @@ If you can’t wait till airodump-ng captures a handshake, you can send a messag
 
 The wireless client will then hopefully re-authenticate with the AP and we’ll capture the authentication handshake.
 
-Send deauth request to broadcast:
+Send your deauth request to broadcast:
 
 ```nohighlight
 sudo aireplay-ng --deauth 100 -a 4C:**:**:**:**:FA wlan0mon --ignore-negative-one
 ```
 
---deauth 100. The number of de-authenticate frames you want to send (0 for unlimited)
+--deauth 100. The number of de-authenticate frames you want to send, in this case I used 100. (0 for unlimited)
 
 -a.The MAC address of the access point
 
@@ -224,7 +224,7 @@ wlan0mon. The wireless interface
 
 --ignore-negative-one. Fixes the ‘fixed channel : -1’ error message that is sometimes encountered.
 
-Though if you want to carry out a direct attack against one of the clients associated with the target AP we can simply issue the following command in a second terminal while leaving the previous command running in the 1st terminal:
+Though, if you want to carry out a direct attack against one of the clients associated with the target AP we can simply issue the following command in a second terminal while leaving our initial command running in the 1st terminal, then running the command below in a 2nd terminal:
 
 ```nohighlight
 sudo aireplay-ng --deauth 100 -a 4C:**:**:**:**:FA -c 60:**:**:**:**:E3 wlan0mon --ignore-negative-one
@@ -242,7 +242,7 @@ aircrack-ng WPAcrack-01.cap
 
 **Cracking the handshake**
 
-Once we have captured a handshake we can them move onto cracking our handshake using the Aircrack-ng suite:
+Once we have captured a handshake we can then move onto cracking our handshake using the Aircrack-ng suite:
 
 ```nohighlight
 sudo aircrack-ng  -b 4C:**:**:**:**:FA WPAcrack-01.cap  -w '/home/host/Tools/SecLists/Passwords/darkc0de.txt'
@@ -253,13 +253,13 @@ sudo aircrack-ng  -b 4C:**:**:**:**:FA WPAcrack-01.cap  -w '/home/host/Tools/Sec
 
 ![Cracking](/images/WiFi/aircrack-crack.png)
 
-The password cracking attempt is only as good as the wordlist used!! It is worth doing research on the AP or device's password policy to allow you to better tailor your password list, therefore increasing your chances of success.
+The password cracking attempt is only as good as the wordlist used!! It is worth doing research on the AP or device's password policy to allow you to better tailor your password lists accordingly, therefore increasing your chances of successfully cracking a password. Please bear in mind that WPA/WPA2 keys can take some time to decrypt, even using Hashcat! To give you a rough idea, check out my other blog post on [Cracking in the Cloud](https://www.alternativesec.xyz/tools/2017/08/04/Cracking-In-The-Cloud-With-Hashcat/). This was a cloud based cracking set-up and not exactly cheap either!
 
 Though this is not always the best way to crack a WPA/WPA2 handshake. An alternative would be to convert the aircrack '.cap' file to the Hashcat file format '.hccap'. For this you will need to have installed the 'hashcat-utils-1.8' at least.
 
 **Changing file formats for Hashcat cracking**
 
-To change from the aircrack-ng format to Hashcat file format for cracking purposes we can utilise a handy tool made by the lovely chaps at Hashcat called 'cap2hccapx'. To do this you need to have recent version of the Hashcat utils and then do the following:
+To change from the aircrack-ng '.cap' format to a Hashcat file format for cracking purposes we can utilise a handy tool made by the lovely chaps at Hashcat called 'cap2hccapx'. To do this you need to have recent version of the Hashcat utils and then do the following:
 
 [Download Hashcat-Utils](https://github.com/hashcat/hashcat-utils/releases/)
 
@@ -277,7 +277,7 @@ Navigate to the 'hashcat-utils-1.8' directory, then to '/bin' and issues the fol
 
 ![cap2hccap](/images/WiFi/cap2hccapx.png)
 
-Now you can use Hashcat to attempt to crack the WPA/WPA2 handshake using more targeted cracking methods i.e. rule based cracking, though this is beyond the scope of this writeup. Needless to say that using Hashcat with rules and a specified password mask would be a lot quicker that using a generic password list!
+Now you can use Hashcat to attempt to crack the WPA/WPA2 handshake using more targeted cracking methods i.e. rule based cracking, though this is beyond the scope of this writeup. Needless to say that using Hashcat with rules and a specified password mask would be a lot quicker that using a generic password list and Aircrack-ng's built in cracking tool unless the target device employed a poor password policy!
 
 **Summary**
 
