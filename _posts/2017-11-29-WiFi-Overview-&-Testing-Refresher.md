@@ -73,7 +73,7 @@ This can be broken down into two distinct categories:
 - Active Discovery
 - Passive Discovery
 
-![Wifi Methodology](/images/WiFi/Wifi-Net-Discovery.PNG)
+![Wifi Methodology](/images/WiFi/Wifi-Net-Discovery.PNG?raw=true)
 
 **Active Discovery**
 
