@@ -4,7 +4,7 @@ title:      Firewall Tips and Best Practices
 date:       2018-11-10
 author:     SecEventsPen
 summary:    Firewall Tips and Best Practices
-categories: Top Tips
+categories: Pentesting
 thumbnail:  puzzle-piece
 tags:
  - 2018
