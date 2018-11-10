@@ -115,6 +115,7 @@ In a recent Sans Firewall Checklist [2], the SANS Institute recommends the follo
 - Deny and Alert (alert systems administrator about traffic that is suspicious)
 - Deny and log (log remaining traffic for analysis)
 
+
 **Traffic Blocking Using Network Devices**
 
 
