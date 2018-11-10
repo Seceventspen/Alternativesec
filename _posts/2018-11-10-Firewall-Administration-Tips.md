@@ -171,7 +171,7 @@ These rules increase the threat surface of the destination device and therefore 
 
 These rules increase the threat surface of the destination device and therefore increases the risk of a vulnerable service being exposed and exploited.
 
-*Uncommented Rules*
+***Uncommented Rules***
 
 Rules which are missing comments detailing their purposes, whilst this does not pose a direct threat, it does increase complexity of firewall management and increases the probability of accidental firewall rule modification.
 
@@ -218,4 +218,5 @@ Thanks for reading!!
 ***References***
 
 [1 - Checkpoint](https://supportcenter.checkpoint.com/supportcenter/portal?eventSubmit_doGoviewsolutiondetails=&solutionid=sk106597)
+
 [2 - Sans FW Checklist](https://www.sans.org/media/score/checklists/FirewallChecklist.pdf)
