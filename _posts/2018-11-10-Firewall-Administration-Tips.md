@@ -131,7 +131,7 @@ Infrastructure devices are more commonly becoming the focus for attackers, due t
 Infrastructure devices, such as firewalls should have their own separate patch management policies and procedures so that updates are regularly installed. Frequent monitoring of the firewalls vendor’s security bulletins can also ensure a quick response to critical issues.
 A well-implemented and robust set of firewall rules will not stop an attack on your organisation if your firewall has a known vulnerability that hasn't been patched which consequently allows attackers to take control of this device.
 
-**Communicate with your teams and business**
+**Communicate with Your Teams and Business Units**
 
 
 Finally yet importantly, enforce to your client that they need to communicate with all their business units/internal stakeholders and end users about any changes to the firewall rules. A high-level overview should be more than sufficient for end users, with only in-depth technical oversight being provided to the relevant network and security teams. Getting input from the business can help make sure that the firewall in use and their configuration meets business and end users' needs whilst maintaining a robust security posture.
