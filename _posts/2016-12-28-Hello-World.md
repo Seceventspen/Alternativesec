@@ -10,7 +10,7 @@ tags:
  - welcome
 ---
 
-Hello World and welcome everyone to the very first blog post from AlternativeSec! This little venture is the result of some positive encouragement from several friends and peers, who's technical level and expertise, is what I aspire to attain during my career.
+"Hello World" and welcome everyone to the very first blog post from AlternativeSec! This little venture is the result of some positive encouragement from several friends and peers, who's technical level and expertise, is what I aspire to attain during my career.
 
 As a result of their continued encouragement and the following phrase "if you only do what you can do, you will never be more than you are now!" ... from this the AlternativeSec blog came to life!
 
