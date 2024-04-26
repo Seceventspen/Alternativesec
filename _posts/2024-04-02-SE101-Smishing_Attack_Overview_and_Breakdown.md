@@ -40,7 +40,7 @@ Using the following image, which depicts the ‘Smishing’ attack message excha
 
 _Note: the SMS conversation has been redacted to protect the recipient’s identity (yellow box), as well as the senior figure being impersonated (red box)._
 
-![Smishing Message](assets/images/posts/smish/smish-msg.jpg "TEST")
+![Smishing Message](assets/images/posts/smish/smish-msg.jpg)
 
 <small>Conversation from an actual ‘Smishing’ Attack message exchange</small>
 
