@@ -12,7 +12,7 @@ hidden: true
 
 <!--more-->
 
-Following on from the series created by Chris Pritchard, featuring blogs post by both Chris and I, this is the latest post in the series, which covers ‘Smishing’, a lesser known, but highly prevalent social engineering attack vector.
+Following on from the series created by [Ghostie](https://blog.ghostie.org/), featuring blogs post by both [Ghostie](https://blog.ghostie.org/) and I, this is the latest post in the series, which covers **‘Smishing’**, a lesser known, but highly prevalent social engineering attack vector.
 
 **What exactly is ‘Smishing’?**
 

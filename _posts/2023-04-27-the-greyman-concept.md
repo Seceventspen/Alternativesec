@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'SE101 - The "Greyman" Concept'
+title: 'SE101 - The "Grey man" Concept'
 tags: [Pentest, SE, Social Engineering, Physical]
 featured_image_thumbnail: assets/images/posts/2018/2_thumbnail.jpg
 featured_image: assets/images/posts/2018/2.jpg
@@ -13,6 +13,8 @@ hidden: true
 Social engineering is an umbrella term used interchangeably when discussing various malicious activities accomplished through multiple forms of human interaction.
 
 <!--more-->
+
+Following on from the series created by [Ghostie](https://blog.ghostie.org/), featuring blogs post by both [Ghostie](https://blog.ghostie.org/) and I, this is a new post in the series, which covers **‘The Grey man’**, a lesser known, but highly useful ability/trait used during physical social engineering attack vectors.
 
 **_Disclaimer:_** _Although this concept is generally referred to as the ‘Grey man,’ this can, of course, be applied to_ **_anyone of any age_** **_who needs to blend into a crowd/environment_**_. This concept is not gender defined. No offence is meant or otherwise implied by using the ‘Grey man’ term during the article._
 
