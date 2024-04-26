@@ -2,9 +2,9 @@
 name: "AlternativeSec"
 description: "Looking at security from alternative means. I am a self confessed cyber geek, who's passionate about strength and conditioning, functional movement and generally an all round awesome guy!\ I Should have been in the Avengers, but it wouldn't have been fair on the others!"
 meta_description: "Jekyll template, minimal style, perfect for bloggers."
-logo: "/assets/images/logoAS.png"
+logo: "assets/images/logoAS.png"
 favicon: "assets/images/favicon.ico"
-baseurl:
+baseurl: https://alternativesec.xyz
 production_url: https://alternativesec.xyz
 disqus:
 #mailchimp_url: "//justgoodthemes.us3.list-manage.com/subscribe/post?u=78f1bab16028354caeb23aecd&amp;id=4a7330d117"
