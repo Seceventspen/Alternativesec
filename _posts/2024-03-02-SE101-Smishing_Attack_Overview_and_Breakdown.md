@@ -40,9 +40,7 @@ Using the following image, which depicts the ‘Smishing’ attack message excha
 
 _Note: the SMS conversation has been redacted to protect the recipient’s identity (yellow box), as well as the senior figure being impersonated (red box)._
 
-![Smishing Message](assets/images/posts/smish/smish-msg.jpg)
-
-<small>Conversation from an actual ‘Smishing’ Attack message exchange</small>
+{% include image-caption.html imageurl="assets/images/posts/smish/smish-msg.jpg" title="Smishing Msg Breakdown" caption="Conversation from an actual ‘Smishing’ Attack Message Exchange" %}
 
 **Step 1) OSINT:** The ‘Smisher’ has clear done some open-source intelligence gathering (OSINT) and identified a senior figure of importance within the target organization. _(Easily done via LinkedIn, Corporate publications/resources, news articles, media coverage etc.)_
 
