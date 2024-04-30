@@ -95,7 +95,6 @@ One thing to note, was that, the entire email body was 'clickable', as when the 
 
 Now, it is a little difficult to read; however, **point 9** and the **red box** are depicting a remote/redirect address linked to `https://storage.googleapis.com`, weird right? Why would apple be using Google? Well they aren't, this in fact is the first of 2 redirect URLs which eventually land on a fake iCloud login portal:
 
-![Phishing Email](assets/images/posts/SE101/Fake-iCloud-Portal.jpg)
 {% include image-caption.html imageurl="assets/images/posts/se101/Fake-iCloud-Portal.jpg" title="Fake iCloud Portal" caption="Malicious iCloud login portal and credential harvester" %}
 
 10. Bogus URL, although it looks to have a valid SSL Cert due to the green padlock, the URL being used it not correct. The legitimate iCloud URL is: `https://www.icloud.com/`
