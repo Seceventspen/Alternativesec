@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'SE101 - Smishing Attack Overview and Breakdown'
+title: 'SE101 - Phishing Attack Overview and Breakdown'
 tags: [Pentest, SE, Social Engineering]
 featured_image_thumbnail: assets/images/posts/se101/phishing.jpg
 featured_image: assets/images/posts/se101/phishing.jpg
