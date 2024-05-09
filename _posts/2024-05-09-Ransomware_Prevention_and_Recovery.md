@@ -175,4 +175,8 @@ In general, organizations should aim to focus on the following key areas:
 
 In today's interconnected digital world, our reliance on various online systems, platforms and communication channels makes us all, individual and organisations alike, vulnerable to malware and ransomware attacks.
 
-Despite widespread awareness of cybersecurity threats, including phishing emails, misconfigured services, and lax perimeter defenses, users often remain trusting. This trust stems from the necessity and requirment of digital connectivity and communication for businesses, employees and customers. Threat actors exploit this trust and these emans, through identifying weaknesses and misconfigurations, aiming to establish a foothold and gain access to a corporate or individual users system on the assumptions that they will contains sensitive business information, credentials, banking information, and private data. It's crucial for organisations and users alike, to remain vigilant and cautious to the risk of falling victim to malware and ransomware attacks.
+Despite widespread awareness of cybersecurity threats, including phishing emails, misconfigured services, and lax perimeter defenses, users often remain trusting. This trust stems from the necessity and requirment of digital connectivity and communication for businesses, employees and customers.
+
+Threat actors exploit this trust and these means, through identifying weaknesses and misconfigurations, aiming to establish a foothold and gain access to a corporate or individual users system on the assumptions that they will contains sensitive business information, credentials, banking information, and private data.
+
+It's crucial for organisations and users alike, to remain vigilant and cautious to the risk of falling victim to malware and ransomware attacks.
