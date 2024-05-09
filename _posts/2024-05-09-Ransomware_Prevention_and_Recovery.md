@@ -32,7 +32,8 @@ Lets pick out some key points, according to a **2023** report [from Sophos](htt
 As you can see, in today's digital landscape, ransomware attacks continue to pose a significant threat to businesses of all sizes. These malicious attacks encrypt critical data, rendering it inaccessible until a ransom is paid. 
 
 To safeguard your organization against such threats and ensure quick recovery in the case of an attack, it's crucial to implement robust prevention and recovery measures.
-## Lets Breakdown a 'Ransomware' Attack *(... at a high-level)*
+## Lets Breakdown a 'Ransomware' Attack
+*(... at a high-level)*
 
 So before we talk about protecting your business from ransomware and recovery best practices, let first breakdown a ransomware attack. For this we'll use a well know ransomware and how the attack unfolded.
 ### Ransomware: WannaCry
