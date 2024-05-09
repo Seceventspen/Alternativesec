@@ -107,6 +107,7 @@ When we look at this, the UK's NHS, for instance, would have benefited from the 
 - **Backup and Recovery:**
     - Maintain regular backups of critical data stored offline or in secure, isolated environments.
     - Test backup restoration procedures regularly to ensure data can be recovered in the event of a ransomware attack without paying the ransom.
+
 ## **The Impact of Ransomware Attacks**
 
 The impact of ransomware attacks on any organisation, though in particular financial and healthcare institutions, can be and is far-reaching, resulting in severe consequences *(as talked about briefly in the section above, where the impact on the UKs NHS was highlighted)*.
