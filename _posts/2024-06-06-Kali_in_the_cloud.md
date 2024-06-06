@@ -211,7 +211,7 @@ Then its as simple as:
 
 ### (3) AWS EC2 Dashboard
 
-Now head back to the 'EC2 Dashboard' and look for you EC2 instance name. Then sit back and wait about 15mins or so for everything to initiate, build and finalise.
+Now head back to the 'EC2 Dashboard' and look for you EC2 instance name. Then sit back and wait for a few minutes or so for everything to initiate, build and finalise.
 
 Upon completion, you should now have:
 
