@@ -14,7 +14,7 @@ During my time as a penetration tester, Adversarial Engineer, Red Teamer and sec
 
 We're seen as party poopers, due the very nature of our job, more often than not, due to it being negative by its very connotation. Nobody wants to be told that the very things they’ve built/are responsible for, has issues and more so, issues that could delay or halt progress altogether or pose a security risk/impact to the business!
 
-In this post we will dive into some of the key things that, we as ppenetration testers, Adversarial Engineers, red teamers, security consultant and the business, can do to revise our approaches, promote better engagement, build better rapport, bring greater value to the process, along with avoiding some of the common mistake that we've all been known to make! 
+In this post we will dive into some of the key things that, we as penetration testers, Adversarial Engineers, red teamers, security consultant and the business, can do to revise our approaches, promote better engagement, build better rapport, bring greater value to the process, along with avoiding some of the common mistake that we've all been known to make! 
 
 _**Image Credits:** [@_RayRT](https://twitter.com/_rayrt) \| [rayrt.gitlab.io](https://rayrt.gitlab.io/),
 his skills are unreal, both technically and visually, thank you for you help as always!_
