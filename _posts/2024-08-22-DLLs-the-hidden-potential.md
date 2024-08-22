@@ -24,7 +24,7 @@ In the realm of Windows operating systems, Dynamic Link Libraries (DLLs) are ess
 
 A Dynamic Link Library (DLL) is a file containing code and data that can be used by multiple programs simultaneously. Unlike an executable (EXE) file, which is a standalone application, a DLL provides functions that applications can call to perform specific tasks. This modular approach allows for more efficient memory usage, easier updates, and shared functionality across different programs.
 
-For example, `user32.dll` is a well-known DLL in Windows that provides essential functions for handling user input (like keyboard and mouse interactions), window management, and other graphical user interface tasks. Programs can call on user32.dll to perform these functions without having to include the code directly within their own executables.
+For example, `user32.dll` is a well-known DLL in Windows that provides essential functions for handling user input (like keyboard and mouse interactions), window management, and other graphical user interface tasks. Programs can call on `user32.dll` to perform these functions without having to include the code directly within their own executables.
 
 # How DLLs Can Be Abused
 
